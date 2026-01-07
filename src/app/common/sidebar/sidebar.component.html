@@ -1,0 +1,96 @@
+<div class="bg-[#020618] min-h-screen flex">
+
+  <!-- SIDEBAR -->
+  <div class="w-64 min-h-screen bg-[#0B1328] border-r border-white/10">
+
+    <!-- LOGO -->
+    <div class="h-12 flex items-center px-5 border-b border-white/10">
+      <div class="flex items-center gap-2">
+        <div class="bg-purple-500 p-1 rounded-lg">
+          <i class="fa-solid fa-cube text-white"></i>
+        </div>
+        <p class="text-white font-semibold text-lg">InventoryPro</p>
+      </div>
+    </div>
+
+    <!-- MENU -->
+    <div class="py-4 px-3 text-white space-y-1">
+
+      <!-- Sidebar Item Component Style -->
+      <!-- inactive = transparent -->
+      <!-- hover = light purple tint -->
+      <!-- active = full purple background -->
+
+      <!-- Dashboard -->
+      <div routerLink="/dashboard" routerLinkActive="!bg-[#b57cff] !text-white !shadow-sm" class="flex items-center gap-3 py-1.5 px-3 rounded-lg cursor-pointer
+               text-gray-300 hover:bg-[#b57cff33] transition">
+        <i class="fa-solid fa-house text-lg"></i>
+        Dashboard
+      </div>
+
+      <!-- Customers -->
+      <div routerLink="/customer" routerLinkActive="!bg-[#b57cff] !text-white !shadow-sm" class="flex items-center gap-3 py-1.5 px-3 rounded-lg cursor-pointer
+               text-gray-300 hover:bg-[#b57cff33] transition">
+        <i class="fa-solid fa-users text-lg"></i>
+        Customers
+      </div>
+
+      <!-- Suppliers -->
+      <div routerLink="/supplier" routerLinkActive="!bg-[#b57cff] !text-white !shadow-sm" class="flex items-center gap-3 py-1.5 px-3 rounded-lg cursor-pointer
+               text-gray-300 hover:bg-[#b57cff33] transition">
+        <i class="fa-solid fa-truck text-lg"></i>
+        Suppliers
+      </div>
+
+      <!-- Products -->
+      <div routerLink="/product" routerLinkActive="!bg-[#b57cff] !text-white !shadow-sm" class="flex items-center gap-3 py-1.5 px-3 rounded-lg cursor-pointer
+               text-gray-300 hover:bg-[#b57cff33] transition">
+        <i class="fa-solid fa-box text-lg"></i>
+        Products
+      </div>
+
+      <!-- Stock Movements -->
+      <div routerLink="/stock" routerLinkActive="!bg-[#b57cff] !text-white !shadow-sm" class="flex items-center gap-3 py-1.5 px-3 rounded-lg cursor-pointer
+               text-gray-300 hover:bg-[#b57cff33] transition">
+        <i class="fa-solid fa-arrow-right-arrow-left text-lg"></i>
+        Stock Movements
+      </div>
+
+      <!-- Invoices -->
+      <div routerLink="/invoice" routerLinkActive="!bg-[#b57cff] !text-white !shadow-sm" class="flex items-center gap-3 py-1.5 px-3 rounded-lg cursor-pointer
+               text-gray-300 hover:bg-[#b57cff33] transition">
+        <i class="fa-solid fa-file-invoice text-lg"></i>
+        Invoices
+      </div>
+
+      <!-- Purchase Orders -->
+      <div routerLink="/purches" routerLinkActive="!bg-[#b57cff] !text-white !shadow-sm" class="flex items-center gap-3 py-1.5 px-3 rounded-lg cursor-pointer
+               text-gray-300 hover:bg-[#b57cff33] transition">
+        <i class="fa-solid fa-cart-arrow-down text-lg"></i>
+        Purchase Orders
+      </div>
+
+      <!-- Payments -->
+      <div routerLink="/payment" routerLinkActive="!bg-[#b57cff] !text-white !shadow-sm" class="flex items-center gap-3 py-1.5 px-3 rounded-lg cursor-pointer
+               text-gray-300 hover:bg-[#b57cff33] transition">
+        <i class="fa-solid fa-money-bill-wave text-lg"></i>
+        Payments
+      </div>
+
+      <!-- Accounts -->
+      <div routerLink="/account" routerLinkActive="!bg-[#b57cff] !text-white !shadow-sm" class="flex items-center gap-3 py-1.5 px-3 rounded-lg cursor-pointer
+               text-gray-300 hover:bg-[#b57cff33] transition">
+        <i class="fa-solid fa-wallet text-lg"></i>
+        Accounts
+      </div>
+
+      <!-- Audit Logs -->
+      <div routerLink="/audit-log" routerLinkActive="!bg-[#b57cff] !text-white !shadow-sm" class="flex items-center gap-3 py-2 px-3 rounded-lg cursor-pointer
+               text-gray-300 hover:bg-[#b57cff33] transition">
+        <i class="fa-solid fa-shield text-lg"></i>
+        Audit Logs
+      </div>
+
+    </div>
+  </div>
+</div>

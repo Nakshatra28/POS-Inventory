@@ -1,0 +1,33 @@
+<div class="fixed inset-0 bg-black/60 flex items-center justify-center">
+  <div class="bg-[#0C1424] w-[420px] p-6 rounded-xl">
+
+    <h2 class="text-lg mb-4">Stock Adjustment</h2>
+
+    <select
+      class="w-full mb-3 bg-gray-800 p-2 rounded"
+      [(ngModel)]="selectedProduct">
+      <option [ngValue]="null">Select Product</option>
+      <option *ngFor="let p of products" [ngValue]="p">
+        {{ p.name }}
+      </option>
+    </select>
+
+    <input
+      type="number"
+      placeholder="+5 or -3"
+      [(ngModel)]="quantity"
+      class="w-full mb-3 bg-gray-800 p-2 rounded" />
+
+    <input
+      type="text"
+      placeholder="Reason"
+      [(ngModel)]="reason"
+      class="w-full mb-4 bg-gray-800 p-2 rounded" />
+
+    <div class="flex justify-end gap-3">
+      <button (click)="close.emit()">Cancel</button>
+      <button (click)="saveAdjustment()">Save</button>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,177 @@
+<div class="fixed inset-0 bg-black/60 backdrop-blur-md flex items-center justify-center z-[9999]">
+
+  <!-- POPUP CARD -->
+  <div
+    class="bg-[#0C1424] w-[520px] h-[80vh] rounded-2xl shadow-xl border border-white/10
+           p-7 relative overflow-hidden flex flex-col m-2"
+  >
+
+    <!-- HEADER -->
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-xl font-bold text-white">Edit Invoice</h2>
+      <button (click)="closeEdit()" class="text-gray-400 hover:text-red-400 text-xl">✕</button>
+    </div>
+
+    <!-- FORM -->
+    <div
+      class="space-y-5 overflow-y-auto pr-2 px-2
+             max-h-[calc(80vh-150px)]
+             [&::-webkit-scrollbar]:hidden"
+    >
+
+      <!-- Invoice No + Date -->
+      <div class="grid grid-cols-2 gap-2">
+        <div>
+          <label class="text-sm text-gray-300">Invoice No</label>
+          <input
+            type="text"
+            [(ngModel)]="invoice.invoiceNo"
+            class="w-full bg-[#0A1323] border border-white/10 rounded-xl px-3 py-2 text-gray-200"
+          />
+        </div>
+
+        <div>
+          <label class="text-sm text-gray-300">Date</label>
+          <input
+            type="date"
+            [(ngModel)]="invoice.invoiceDate"
+            class="w-full bg-[#0A1323] border border-white/10 rounded-xl px-3 py-2 text-gray-200"
+          />
+        </div>
+      </div>
+
+      <!-- Due Date -->
+      <div>
+        <label class="text-sm text-gray-300">Due Date</label>
+        <input
+          type="date"
+          [(ngModel)]="invoice.dueDate"
+          class="w-full bg-[#0A1323] border border-white/10 rounded-xl px-3 py-2 text-gray-200"
+        />
+      </div>
+
+      <!-- Customer -->
+      <div>
+        <label class="text-sm text-gray-300">Customer</label>
+        <select
+          [(ngModel)]="invoice.customerId"
+          (change)="onCustomerChange()"
+          class="w-full bg-[#0A1323] border border-white/10 rounded-xl px-3 py-2 text-gray-200"
+        >
+          <option value="">Select customer</option>
+          <option *ngFor="let c of customers" [value]="c._id">
+            {{ c.name }}
+          </option>
+        </select>
+      </div>
+
+      <!-- PRODUCT SECTION -->
+      <div class="bg-white/5 border border-white/10 rounded-xl p-4 space-y-4">
+
+        <p class="text-gray-300 text-sm font-medium">Add Product</p>
+
+        <div class="grid grid-cols-2 gap-2">
+          <select
+            [(ngModel)]="product.productId"
+            class="bg-[#0A1323] border border-white/10 rounded-xl px-3 py-2 text-gray-200"
+          >
+            <option value="">Select product</option>
+            <option *ngFor="let p of products" [value]="p._id">
+              {{ p.name }}
+            </option>
+          </select>
+
+          <input
+            type="number"
+            [(ngModel)]="product.quantity"
+            placeholder="Quantity"
+            class="bg-[#0A1323] border border-white/10 rounded-xl px-3 py-2 text-gray-200"
+          />
+        </div>
+
+        <div class="grid grid-cols-2 gap-2">
+          <input
+            type="number"
+            [(ngModel)]="product.price"
+            placeholder="Price"
+            class="bg-[#0A1323] border border-white/10 rounded-xl px-3 py-2 text-gray-200"
+          />
+
+          <input
+            type="number"
+            [(ngModel)]="invoice.tax"
+            placeholder="Tax %"
+            class="bg-[#0A1323] border border-white/10 rounded-xl px-3 py-2 text-gray-200"
+          />
+        </div>
+
+        <div>
+          <label class="text-sm text-gray-300">Payment Status</label>
+          <select
+            [(ngModel)]="invoice.paymentStatus"
+            class="w-full bg-[#0A1323] border border-white/10 rounded-xl px-3 py-2 text-gray-200"
+          >
+            <option value="paid">Paid</option>
+            <option value="unpaid">Unpaid</option>
+          </select>
+        </div>
+
+        <button
+          type="button"
+          (click)="addProduct()"
+          class="text-sm text-purple-400 hover:text-purple-300"
+        >
+          + Add Product
+        </button>
+
+        <!-- ADDED ITEMS -->
+        <div *ngIf="invoice.items.length" class="space-y-2">
+          <div
+            *ngFor="let item of invoice.items; let i = index"
+            class="flex justify-between bg-black/30 p-2 rounded-lg text-sm"
+          >
+            <div>
+              <p class="text-gray-200">{{ getProductName(item.productId) }}</p>
+              <p class="text-xs text-gray-400">
+                Qty: {{ item.quantity }} × ₹{{ item.price }}
+              </p>
+            </div>
+
+            <button (click)="removeItem(i)" class="text-red-400">✕</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- NOTES -->
+      <div>
+        <label class="text-sm text-gray-300">Notes</label>
+        <textarea
+          rows="2"
+          [(ngModel)]="invoice.notes"
+          class="w-full bg-[#0A1323] border border-white/10 rounded-xl px-3 py-2 text-gray-200 resize-none"
+        ></textarea>
+      </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="flex justify-end gap-3 mt-6">
+      <button
+        (click)="closeEdit()"
+        class="px-4 py-2 bg-gray-700 text-gray-300 rounded-lg"
+      >
+        Cancel
+      </button>
+
+      <button
+        (click)="saveInvoice()"
+        class="px-4 py-2 rounded-lg text-white
+               bg-gradient-to-r from-purple-600 to-purple-500"
+      >
+        Save Invoice
+      </button>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="fixed inset-0 bg-black/60 backdrop-blur flex items-center justify-center z-[9999]">
+
+  <div class="bg-[#0C1424] w-[420px] rounded-xl p-6 border border-white/10">
+
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-lg font-semibold text-white">Payment Details</h2>
+      <button
+        (click)="close.emit()"
+        class="text-gray-400 hover:text-red-400 text-lg">
+        ✕
+      </button>
+    </div>
+
+    <!-- Details -->
+    <div class="space-y-2 text-sm text-gray-200">
+      <p><span class="text-gray-400">Customer:</span> {{ payment.customerName }}</p>
+      <p><span class="text-gray-400">Invoice ID:</span> {{ payment.invoiceId }}</p>
+      <p><span class="text-gray-400">Amount:</span> ₹ {{ payment.amount }}</p>
+      <p><span class="text-gray-400">Method:</span> {{ payment.method }}</p>
+      <p><span class="text-gray-400">Reference:</span> {{ payment.referenceNo || '—' }}</p>
+      <p><span class="text-gray-400">Note:</span> {{ payment.note || '—' }}</p>
+      <p><span class="text-gray-400">Status:</span> {{ payment.status }}</p>
+      <p>
+        <span class="text-gray-400">Date:</span>
+        {{ payment.paymentDate | date:'dd MMM yyyy' }}
+      </p>
+    </div>
+
+  </div>
+</div>
