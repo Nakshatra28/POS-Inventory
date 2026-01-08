@@ -16,7 +16,7 @@ export class InvoicepopupComponent  implements OnInit {
   @Output() close = new EventEmitter<void>();
   @Output() invoiceCreated = new EventEmitter<void>();
   @Input() data: any = null;
-  @Output() showToast = new EventEmitter<string>();
+  @Output() toast = new EventEmitter<string>();
 invoice = {
   customerId: '',
   customerName: '',
@@ -26,8 +26,8 @@ invoice = {
   paymentStatus: 'unpaid',
   tax: 0,
   discount: 0,
-  invoiceDate: new Date().toISOString().substring(0, 10), // ✅ today
-  dueDate: ''                                             // ✅ optional
+  invoiceDate: new Date().toISOString().substring(0, 10), 
+  dueDate: ''                                             
 };
 
 
@@ -64,7 +64,7 @@ loadCustomers() {
   addProduct() {
     console.log("invoice",this.invoice)
   if (!this.product.quantity || !this.product.price) {
-    alert('Enter quantity & price');
+     this.toast.emit('Enter quantity and price');
     return;
   }
 
@@ -92,7 +92,7 @@ constructor(private api: ApiService, private elementRef: ElementRef) {}
  createInvoice() {
 
   if (!this.invoice.customerName || this.invoice.items.length === 0) {
-    this.showToast.emit('Customer name and at least one product are required');
+    this.toast.emit('Customer name and at least one product are required');
     return;
   }
 
@@ -107,13 +107,13 @@ constructor(private api: ApiService, private elementRef: ElementRef) {}
 
   this.api.createInvoice(payload).subscribe({
     next: () => {
-      this.invoiceCreated.emit();                  // 🔥 refresh parent list
-      this.showToast.emit('Invoice created successfully'); // 🔥 toast
-      this.onClose();                              // 🔥 close popup
+      this.invoiceCreated.emit();                
+      this.toast.emit('Invoice created successfully'); 
+      this.onClose();                            
     },
     error: (err) => {
       console.error(err);
-      this.showToast.emit('Failed to create invoice'); // 🔥 toast (no alert)
+      this.toast.emit('Failed to create invoice');
     }
   });
 }

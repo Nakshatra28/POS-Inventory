@@ -145,13 +145,13 @@ export class CustomersComponent implements OnInit {
     console.log('IDs to delete:', idsToDelete);
 
     if (idsToDelete.length === 0) {
-      alert('No product selected');
-      return;
+ this.showToastMessage('No customer selected');
+       return;
     }
 
     this.api.deleteCustomer(idsToDelete).subscribe(
       (res: any) => {
-        alert('Deleted successfully');
+       this.showToastMessage('Customer deleted successfully');
         this.selectedCustomers = [];
         this.selectAll = false;
         this.getAllCustomers();
@@ -216,4 +216,13 @@ export class CustomersComponent implements OnInit {
         customer.phone?.includes(value)
     );
   }
+
+  showToastMessage(message: string) {
+  this.toastMessage = message;
+  this.showToast = true;
+
+  setTimeout(() => {
+    this.showToast = false;
+  }, 3000);
+}
 }

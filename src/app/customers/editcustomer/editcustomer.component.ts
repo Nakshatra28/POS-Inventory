@@ -12,6 +12,9 @@ import { FormsModule } from '@angular/forms';
 export class EditcustomerComponent {
   @Output() close = new EventEmitter<void>();
     @Input() data: any = null;
+   
+@Output() toast = new EventEmitter<string>();
+
      constructor(private api: ApiService) {}
  customer:any = {};
   isEditing = true;
@@ -28,7 +31,7 @@ ngOnChanges() {
   saveCustomer(){
    console.log("SAVE CLICKED → CUSTOMER:", this.customer);
     if(!this.customer.name || !this.customer.email || !this.customer.phone || !this.customer.status ){
-      alert("Please fill required fields");
+       this.toast.emit('Please fill all required fields');
       return
     }
     if(this.data && this.data._id){
@@ -42,7 +45,7 @@ ngOnChanges() {
   createCustomer(){
     this.api.addCustomer(this.customer).subscribe((res:any) =>{
       if(res.success){
-        alert("customer added successfullly");
+        this.toast.emit('Customer added successfully');
         this.close.emit();
       }
     });
@@ -52,7 +55,8 @@ ngOnChanges() {
     this.api.updateCustomer(this.customer._id,this.customer).subscribe(
       (res:any)=>{
         if(res.success){
-          alert("Cstomer update Successfully");
+           this.toast.emit('Customer updated successfully');
+
           this.close.emit();
         }
       },

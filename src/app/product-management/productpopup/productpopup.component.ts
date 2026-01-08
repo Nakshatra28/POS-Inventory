@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./productpopup.component.css']
 })
 export class ProductpopupComponent {
+  @Output() toast = new EventEmitter<string>();
 
   @Output() close = new EventEmitter<void>();
   @Input() data: any = null;
@@ -28,30 +29,25 @@ product = {
   minStock: null,
   maxStock: null
 };
-  addproduct(){
-    console.log('sending product to API:', this.product);
-    if(!this.product.name||!this.product.sku ||!this.product.price){
-      alert("Please fill required fields");
-      return;
-
-    }
-
-this.api.addProduct(this.product).subscribe(
-  
-  (res:any)=>{
-    if(res.success){
-        console.log('API response:', res);
-      alert("Product added Successfully");
-      this.close.emit();
-    }
-    
-    
-
+  addproduct() {
+  if (!this.product.name || !this.product.sku || !this.product.price) {
+    this.toast.emit('Please fill required fields');
+    return;
   }
-)
 
-      console.log(this.addproduct)
+  this.api.addProduct(this.product).subscribe(
+    (res: any) => {
+      if (res.success) {
+        this.toast.emit('Product added successfully');
+        this.close.emit();
+      }
+    },
+    (error) => {
+      console.error('ADD PRODUCT ERROR:', error);
+      this.toast.emit('Failed to add product');
+    }
+  );
+}
 
-  }
 
 }

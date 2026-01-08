@@ -11,7 +11,7 @@ import { ApiService } from '../../service/api.service';
   styleUrl: './stock-adjustment-popup.component.css'
 })
 export class StockAdjustmentPopupComponent {
-  
+  @Output() toast = new EventEmitter<string>();
   @Output() close = new EventEmitter<void>();
 @Output() success = new EventEmitter<void>();
 
@@ -33,7 +33,7 @@ export class StockAdjustmentPopupComponent {
 
   saveAdjustment() {
     if (!this.selectedProduct || !this.quantity) {
-      alert('Select product and quantity');
+       this.toast.emit('Select product and quantity');
       return;
     }
 

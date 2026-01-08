@@ -111,14 +111,15 @@ onAdjustmentSuccess() {
 }
 
 viewAdjustment(m: any) {
-  alert(
-    `Adjustment Details\n\n` +
-    `Product: ${m.productName}\n` +
-    `Quantity: ${m.quantity}\n` +
-    `Reason: ${m.referenceId}\n` +
-    `User: ${m.user}`
-  );
+  const message =
+    `Adjustment: ${m.productName} | ` +
+    `Qty: ${m.quantity} | ` +
+    `Reason: ${m.referenceId} | ` +
+    `By: ${m.user}`;
+
+  this.openToast(message);
 }
+
 
 viewPurchaseOrder(refId: string) {
   console.log('Open Purchase Order:', refId);

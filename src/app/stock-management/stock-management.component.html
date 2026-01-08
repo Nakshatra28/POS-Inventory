@@ -196,6 +196,7 @@
   *ngIf="openAdjustmentPopup"
   (close)="openAdjustmentPopup = false"
   (success)="onAdjustmentSuccess()"
+  (toast)="openToast($event)"
 ></app-stock-adjustment-popup>
 
 

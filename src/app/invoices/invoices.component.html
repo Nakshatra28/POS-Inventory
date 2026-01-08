@@ -249,11 +249,12 @@ class="flex items-center gap-1 py-1 px-2 rounded-lg text-sm transform active:sca
 
 <!-- POPUP -->
 <app-invoicepopup *ngIf="openInvoicePopup" [data]="selectedInvoiceData" (invoiceCreated)="fetchInvoices()"
-  (close)="closePopup()"  (showToast)="openToast($event)">
+  (close)="closePopup()"  (toast)="openToast($event)">
 
 </app-invoicepopup>
 <app-editinvoice *ngIf="openeditInvoicePopup " 
 (close)="closeEdit()"
+(toast)="showToastMessage($event)"
 [data]="dataToEdit">
 </app-editinvoice>
 

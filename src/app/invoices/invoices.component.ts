@@ -45,7 +45,8 @@
     constructor(private api: ApiService, private elementRef: ElementRef) {}
 
     searchText: string = '';
-  
+ 
+showToast = false;
 
     ngOnInit() {
       this.fetchInvoices();
@@ -234,5 +235,14 @@ onPaymentAdded() {
 
   // 🔥 THIS IS WHAT UPDATES REMAINING AMOUNT
   this.fetchInvoices();
+}
+
+showToastMessage(message: string) {
+  this.toastMessage = message;
+  this.showToast = true;
+
+  setTimeout(() => {
+    this.showToast = false;
+  }, 3000);
 }
   }

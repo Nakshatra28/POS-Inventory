@@ -99,19 +99,19 @@ export class ProductManagementComponent implements OnInit {
     console.log('IDs to delete:', idsToDelete);
 
     if (idsToDelete.length === 0) {
-      alert('No product selected');
+       this.openToast('No product selected');
       return;
     }
 
     this.api.deleteProducts(idsToDelete).subscribe(
       (res: any) => {
-        alert('Deleted successfully');
+       this.handleSuccess('Product deleted successfully');
         this.selectedProducts = [];
         this.selectAll = false;
         this.getAllProduct();
       },
       (error) => {
-        console.error('DELETE ERROR:', error);
+         this.handleError('Failed to delete product');
       }
     );
     this.getAllProduct();

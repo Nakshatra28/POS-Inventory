@@ -10,6 +10,8 @@ import { FormsModule } from '@angular/forms';
 })
 export class CustomerpopupComponent {
 
+@Output() toast = new EventEmitter<string>();
+
   @Output() close = new EventEmitter<void>();
 constructor(private api: ApiService) {}
   closePopup() {
@@ -29,7 +31,7 @@ saveCustomer() {
   console.log('Customer before save:', this.customer);
 
   if (!this.customer.name || !this.customer.email) {
-    alert('Name and email are required');
+    this.toast.emit('Name and email are required');
     return;
   }
 
@@ -38,7 +40,7 @@ saveCustomer() {
       this.close.emit();   // 👈 tells parent to refresh table
     },
     error: (err) => {
-      alert('Failed to add customer');
+     this.toast.emit('Failed to add customer');
       console.error(err);
     }
   });

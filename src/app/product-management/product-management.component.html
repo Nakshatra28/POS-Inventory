@@ -198,11 +198,13 @@ class="flex items-center gap-1 py-1 px-2 rounded-lg text-sm transform active:sca
 
 <app-productpopup
   *ngIf="openProductPopup"
-  (close)="closePopup()">
-</app-productpopup>
+  (close)="closePopup()"
+    (toast)="openToast($event)">
+  </app-productpopup>
 
 <app-editproduct
 *ngIf="openEditProduct"
 (close)="closeEdit()"
+ (toast)="openToast($event)"
  [data]="dataToEdit">
 </app-editproduct>

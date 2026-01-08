@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class SupplierpopupComponent {
 @Output() close = new EventEmitter<void>();
+@Output() toast = new EventEmitter<string>();
 @Output() supplierAdded = new EventEmitter<void>();
 constructor(private api: ApiService) {}
 supplier ={
@@ -31,7 +32,7 @@ saveSuppllier() {
   
 
   if (!this.supplier.name || !this.supplier.phone || !this.supplier.email) {
-    alert('Need to fill all required fields');
+this.toast.emit('Please fill all required fields');
     return;
   }
 
@@ -41,7 +42,7 @@ saveSuppllier() {
       this.close.emit();
     },
     error: () => {
-      alert('Failed to add supplier');
+ this.toast.emit('Failed to add supplier');
     }
   });
 
