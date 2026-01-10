@@ -2,11 +2,12 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angula
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../service/api.service';
+import { ClickOutsideDirective } from '../click-outside.directive';
 
 @Component({
   selector: 'app-audit-logs',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,ClickOutsideDirective],
   templateUrl: './audit-logs.component.html',
   styleUrl: './audit-logs.component.css'
 })
@@ -16,7 +17,7 @@ export class AuditLogsComponent implements OnInit, AfterViewInit {
   allLogs: any[] = []; // Store ALL logs from backend
   filteredLogs: any[] = []; // Store filtered logs
   displayedLogs: any[] = []; // Logs currently shown (paginated)
-  
+   showFilter = false;
   searchText = '';
   isLoading = false;
   fromDate = '';
@@ -95,56 +96,61 @@ export class AuditLogsComponent implements OnInit, AfterViewInit {
   }
 
   // Apply filters and search on frontend
-  applyFiltersAndSearch() {
-    console.log('Applying filters and search...');
-    
-    // Start with all logs
-    let filtered = [...this.allLogs];
+ applyFiltersAndSearch() {
+  // Start with all logs
+  let filtered = [...this.allLogs];
 
-    // Apply date filters
-    if (this.fromDate) {
-      filtered = filtered.filter(log => {
-        const logDate = new Date(log.createdAt);
-        const from = new Date(this.fromDate);
-        return logDate >= from;
-      });
-    }
-
-    if (this.toDate) {
-      filtered = filtered.filter(log => {
-        const logDate = new Date(log.createdAt);
-        const to = new Date(this.toDate);
-        return logDate <= to;
-      });
-    }
-
-    // Apply module filter
-    if (this.selectedModule !== 'All') {
-      filtered = filtered.filter(log => log.module === this.selectedModule);
-    }
-
-    // Apply search filter
-    if (this.searchText) {
-      const search = this.searchText.toLowerCase();
-      filtered = filtered.filter(log => {
-        return (
-          log.user?.toLowerCase().includes(search) ||
-          log.module?.toLowerCase().includes(search) ||
-          log.details?.toLowerCase().includes(search) ||
-          log.status?.toLowerCase().includes(search) ||
-          log.ipAddress?.toLowerCase().includes(search)
-        );
-      });
-    }
-
-    console.log('Filtered logs count:', filtered.length);
-    
-    this.filteredLogs = filtered;
-    
-    // Reset display count and show first batch
-    this.currentDisplayCount = this.itemsPerLoad;
-    this.updateDisplayedLogs();
+  /* ---------------- DATE FILTER ---------------- */
+  if (this.fromDate) {
+    const from = new Date(this.fromDate);
+    filtered = filtered.filter(log => new Date(log.createdAt) >= from);
   }
+
+  if (this.toDate) {
+    const to = new Date(this.toDate);
+    filtered = filtered.filter(log => new Date(log.createdAt) <= to);
+  }
+
+  /* ---------------- MODULE FILTER ---------------- */
+  if (this.selectedModule !== 'All') {
+    filtered = filtered.filter(log => {
+      // Safely get module-like value from backend log
+      const moduleValue =
+        log.module ||
+        log.entity ||
+        log.action ||
+        log.type ||
+        log.reference ||
+        '';
+
+      return moduleValue
+        .toString()
+        .toLowerCase()
+        .includes(this.selectedModule.toLowerCase());
+    });
+  }
+
+  /* ---------------- SEARCH FILTER ---------------- */
+  if (this.searchText) {
+    const search = this.searchText.toLowerCase();
+
+    filtered = filtered.filter(log =>
+      log.user?.toLowerCase().includes(search) ||
+      log.details?.toLowerCase().includes(search) ||
+      log.status?.toLowerCase().includes(search) ||
+      log.ipAddress?.toLowerCase().includes(search) ||
+      log.module?.toLowerCase().includes(search) ||
+      log.entity?.toLowerCase().includes(search) ||
+      log.action?.toLowerCase().includes(search)
+    );
+  }
+
+  /* ---------------- FINAL UPDATE ---------------- */
+  this.filteredLogs = filtered;
+  this.currentDisplayCount = this.itemsPerLoad;
+  this.updateDisplayedLogs();
+}
+
 
   // Load more items on scroll
   loadMoreItems() {
@@ -167,13 +173,6 @@ export class AuditLogsComponent implements OnInit, AfterViewInit {
   // Search triggered
   searchLogs() {
     console.log('Search triggered:', this.searchText);
-    this.applyFiltersAndSearch();
-    this.scrollToTop();
-  }
-
-  // Apply filter button
-  applyFilter() {
-    console.log('Filter applied');
     this.applyFiltersAndSearch();
     this.scrollToTop();
   }
@@ -228,4 +227,34 @@ export class AuditLogsComponent implements OnInit, AfterViewInit {
   get hasMoreItems(): boolean {
     return this.currentDisplayCount < this.filteredLogs.length;
   }
+
+
+filterOptions: string[] = [
+  'All',
+  'Invoice',
+  'Payment',
+  'Purchase',
+  'Product',
+  'Customer'
+];
+
+selectedFilter: string = 'All';
+
+
+
+toggleFilter() {
+  this.showFilter = !this.showFilter;
+}
+selectFilter(option: string) {
+  console.log('FILTER CLICKED:', option);   // 👈 ADD THIS
+  this.selectedModule = option;   // update module filter
+  this.showFilter = false;
+
+  this.applyFiltersAndSearch();   // 🔥 THIS WAS MISSING
+  this.scrollToTop();
+}
+
+
+
+  
 }
