@@ -36,6 +36,7 @@ export class AccountsComponent implements OnInit {
   ngOnInit() {
     this.loadAccountSummary();
     this.loadAccountsList();
+   
   }
 
   // 🔹 Summary API
@@ -58,7 +59,7 @@ export class AccountsComponent implements OnInit {
     this.api.getAccountsList().subscribe({
       next: (res) => {
         this.accountsList = res;
-        this.filteredAccounts = res; // ✅ IMPORTANT
+        this.filteredAccounts = res; 
         this.isLoadingAccounts = false;
         console.log('Accounts List:', res);
       },
@@ -69,7 +70,7 @@ export class AccountsComponent implements OnInit {
     });
   }
 
-  // 🔹 Search logic
+  //  Search logic
   searchAccounts() {
     const text = this.searchText.trim().toLowerCase();
 
@@ -114,5 +115,7 @@ loadLedger(code: string) {
     }
   });
 }
+
+
 
 }

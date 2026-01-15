@@ -11,13 +11,11 @@
 
 
 
-
-
 <!-- TOP CARDS -->
 <div class="flex justify-even gap-8 mt-4 px-4 mt-4    ">
 
   <!-- Card -->
-  <div class="bg-[#071426] border border-white/10 h-28 rounded-xl w-36 p-3  shadow-md">
+  <div class="bg-[#071426] border border-white/10 h-28 rounded-xl w-40 p-3  shadow-md">
     <div class="flex justify-between items-center">
       <p class="text-sm text-gray-300">Total Sales</p>
       <div class="bg-green-500 flex justify-center items-center size-8 rounded-lg">
@@ -31,11 +29,11 @@
    <p class="text-xl font-semibold">
   ₹{{ accountSummary.totalSales | number }}
 </p>
-    <!-- <p class="text-xs text-green-300">+12.5% from last month</p> -->
+    
   </div>
 
   <!-- Card -->
-  <div class="bg-[#071426] border border-white/10 h-28 rounded-xl w-36 p-3 shadow-md">
+  <div class="bg-[#071426] border border-white/10 h-28 rounded-xl w-40 p-3 shadow-md">
     <div class="flex justify-between items-center">
       <p class="text-sm text-gray-300">Stock Value</p>
       <div class="bg-blue-500 flex justify-center items-center size-8 rounded-lg">
@@ -45,11 +43,11 @@
     <p class="text-xl font-semibold">
   ₹{{ accountSummary.stockValue | number }}
 </p>
-    <!-- <p class="text-xs text-blue-300">+5.2% from last month</p> -->
+    
   </div>
 
   <!-- Card -->
-  <div class="bg-[#071426] border border-white/10 h-28 rounded-xl w-36 p-3 shadow-md">
+  <div class="bg-[#071426] border border-white/10 h-28 rounded-xl w-40 p-3 shadow-md">
     <div class="flex justify-between items-center">
       <p class="text-sm text-gray-300">Outstanding Payment</p>
       <div class="bg-orange-500 flex justify-center items-center size-8 rounded-lg">
@@ -63,7 +61,7 @@
   </div>
 
   <!-- Card -->
-  <div class="bg-[#071426] border border-white/10 h-28 rounded-xl w-36 p-3 shadow-md">
+  <div class="bg-[#071426] border border-white/10 h-28 rounded-xl w-40 p-3 shadow-md">
     <div class="flex justify-between items-center">
       <p class="text-sm text-gray-300">Active Customers</p>
       <div class="bg-green-600 flex justify-center items-center size-8 rounded-lg">
@@ -73,12 +71,12 @@
    <p class="text-xl font-semibold">
   {{ accountSummary.activeCustomers }}
 </p>
-    <!-- <p class="text-xs text-green-300">+18 this month</p> -->
+  
   </div>
 
 
    <!-- Card -->
-    <div class="bg-[#071426] border border-white/10 h-28 rounded-xl w-36 p-3 shadow-md">
+    <div class="bg-[#071426] border border-white/10 h-28 rounded-xl w-40 p-3 shadow-md">
       <div class="flex justify-between items-center">
         <p class="text-sm text-gray-300">Paid Amount</p>
         <div class="bg-green-600 flex justify-center items-center size-8 rounded-lg">
@@ -88,7 +86,7 @@
     <p class="text-xl font-semibold">
       ₹{{ accountSummary.totalPaid | number }}
   </p>
-      <!-- <p class="text-xs text-green-300">+18 this month</p> -->
+     
     </div>
 
 </div>
@@ -161,7 +159,7 @@
     </td>
   </tr>
 
-  <!-- 3️⃣ Data Rows -->
+  <!--Data Rows -->
   <ng-container *ngIf="!isLoadingAccounts && filteredAccounts.length > 0">
     <tr
       *ngFor="let acc of filteredAccounts"

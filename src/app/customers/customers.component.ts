@@ -225,4 +225,15 @@ export class CustomersComponent implements OnInit {
     this.showToast = false;
   }, 3000);
 }
+
+
+
+openToast(message: string) {
+  this.toastMessage = message;
+  this.showToast = true;
+
+  setTimeout(() => {
+    this.showToast = false;
+  }, 3000);
+}
 }

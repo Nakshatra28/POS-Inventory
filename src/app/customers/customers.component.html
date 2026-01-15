@@ -194,7 +194,10 @@
 
 <app-customerpopup *ngIf="openCustomerPopup" (close)="closePopup()">
 </app-customerpopup>
-<app-editcustomer *ngIf="openEditcustomer" (close)="closeEdit()" [data]="dataToEdit">
 
-
+<app-editcustomer
+  *ngIf="openEditcustomer"
+  [data]="dataToEdit"
+  (close)="closeEdit()"
+  (updated)="openToast($event)">
 </app-editcustomer>
