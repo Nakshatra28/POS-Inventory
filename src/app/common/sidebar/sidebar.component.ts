@@ -1,5 +1,5 @@
   import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
   @Component({
@@ -11,38 +11,11 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
   })
 
   export class SidebarComponent {
-    showproduct=false;
-    showsupplier=false;
-  
-    showstock=false;
-    showdashboard=false;  
-    showreport=false;
+      @Output() close = new EventEmitter<void>();
 
-    // toggleproduct(){
-    //   this.showproduct =!this.showproduct;
-    // }
-
-     
-    // togglestock(){
-    //   this.showstock =!this.showstock;
-
-    // }
-       
-    // tooglesupplier(){
-    //   this.showsupplier =!this.showsupplier;
-    // }
-    
-
-
-     
-    // toggledashboard(){
-    //   this.showdashboard =!this.showdashboard;
-    // }
-
-
-    // togglereport(){
-    //   this.showreport =!this.showreport;
-    // }
+  closeSidebar() {
+    this.close.emit();
+  }
 
 
   }

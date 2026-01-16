@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -8,5 +8,11 @@ import { Component } from '@angular/core';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
+sidebarOpen = false;
+  @Output() toggle = new EventEmitter<void>();
+  toggleSidebar() {
+        this.toggle.emit();
 
+  // emit event to parent layout
+}
 }
