@@ -1,5 +1,6 @@
 <!-- Header -->
-<div class="flex justify-between items-center px-4">
+<div class="flex flex-col md:flex-row md:justify-between md:items-center gap-3 px-4">
+
   <div>
     <p class="text-3xl">Customers</p>
     <p class="text-xs text-gray-500 px-1">
@@ -8,7 +9,9 @@
   </div>
 
   <button (click)="openPopup()"
-    class="flex items-center gap-1 bg-blue-500 py-1.5 px-2 rounded-lg text-sm transform active:scale-95">
+      class="flex items-center gap-1 bg-blue-500 py-1.5 px-3
+         rounded-lg text-sm w-full md:w-auto
+         transform active:scale-95">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
       class="size-5">
       <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -18,10 +21,10 @@
 </div>
 
 <!-- Search + Filter Row -->
-<div class="flex gap-4 px-4 mt-10 mb-15   ">
+<div class="flex flex-col md:flex-row gap-3 px-4 mt-6">
   <!-- Search -->
   <div>
-    <div class="flex items-center border border-white/20 w-64 py-0.5 rounded-lg px-2">
+    <div class="flex items-center border border-white/20 w-full md:w-64 py-0.5 rounded-lg px-2">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
         class="size-5">
         <path stroke-linecap="round" stroke-linejoin="round"
@@ -34,10 +37,12 @@
         class="px-2 bg-transparent outline-none">
     </div>
   </div>
-  <button (click)="searchCustomers()">Search</button>
+  <button
+  class="bg-blue-500 py-1.5 px-3 rounded-lg text-sm w-full md:w-auto"
+  (click)="searchCustomers()">Search</button>
 
   <button   (click)="clearFilters()"
-    class="flex items-center gap-1 py-1 px-2 rounded-lg text-sm transform active:scale-95">
+    class="bg-blue-500 py-1.5 px-3 rounded-lg text-sm w-full md:w-auto">
     Clear
   </button>
 
@@ -45,7 +50,9 @@
   <!-- Filter -->
   <div class="relative inline-block">
     <button (click)="toggleFilter($event)"
-      class="flex items-center gap-1 bg-gray-700 rounded-lg px-3 py-0.5 w-24  transform  active:scale-95">
+class="flex items-center gap-1 border border-white/20
+       py-1.5 px-3 rounded-lg text-sm
+       w-full md:w-auto">
 
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
         class="size-4">
@@ -60,7 +67,7 @@
       *ngIf="showFilter" appClickOutside (outsideClick)="showFilter = false">
      
        <button
-      class="block w-full text-left px-3 py-2 hover:bg-white/5"
+       class="block w-full text-left px-3 py-2 hover:bg-white/5"
       (click)="applyStatusFilter('')"
     >
       All
@@ -72,7 +79,9 @@
      Active
     </button>
     <button
-      class="block w-full text-left px-3 py-2 hover:bg-white/5"
+       class="flex items-center gap-1 bg-blue-500 py-1.5 px-3
+         rounded-lg text-sm w-full md:w-auto
+         transform active:scale-95"
       (click)="applyStatusFilter('inactive')"
     >
       Inactive
@@ -86,7 +95,9 @@
 <div>
   <div class="px-4 mt-10">
     <div *ngIf="selectedCustomers.length > 1" class=""><button
-        class="cursor-pointer transform active:scale-95 flex  items-center gap-1 mb-2" (click)="deleteCustomer()">
+          class="flex items-center gap-1 bg-blue-500 py-1.5 px-3
+         rounded-lg text-sm w-full md:w-auto
+         transform active:scale-95" (click)="deleteCustomer()">
         <p class="text-red-600"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
             stroke-width="1.5" stroke="currentColor" class="size-4">
             <path stroke-linecap="round" stroke-linejoin="round"
@@ -112,12 +123,12 @@
                 class="accent-blue-500 cursor-pointer" />
             </th>
 
-            <th class="py-3 px-4">Sr No</th>
-            <th class="py-3 px-4">Name</th>
-            <th class="py-3 px-4">Email</th>
-            <th class="py-3 px-4">Phone</th>
-            <th class="py-3 px-4">Status</th>
-            <th class="py-3 px-4 text-right">Actions</th>
+            <th class="py-3 px-4 ">Sr No</th>
+            <th class="py-3 px-4 ">Name</th>
+            <th class="py-3 px-4 ">Email</th>
+            <th class="py-3 px-4 ">Phone</th>
+            <th class="py-3 px-4 ">Status</th>
+            <th class="py-3 px-4 ">Actions</th>
           </tr>
         </thead>
 
@@ -129,19 +140,19 @@
               <input type="checkbox" [checked]="selectedCustomers.includes(customer._id)"
                 (change)="toggleCustomer(customer._id, $event)" class="accent-blue-500 cursor-pointer" />
             </td>
-            <td class="py-3 px-4">{{ i + 1 }}</td>
-            <td class="py-3 px-4">{{ customer.name }}</td>
-            <td class="py-3 px-4">{{ customer.email }}</td>
-            <td class="py-3 px-4">{{ customer.phone || '+' }}</td>
-            <td class="py-3 px-4">
-              <span class="px-2 py-1 text-xs rounded" [ngClass]="{
+            <td  class="py-2 px-2 md:py-3 md:px-4 font-small">{{ i + 1 }}</td>
+            <td  class="py-2 px-2 md:py-3 md:px-4 font-small">{{ customer.name }}</td>
+            <td  class="py-2 px-2 md:py-3 md:px-4 font-small">{{ customer.email }}</td>
+            <td  class="py-2 px-2 md:py-3 md:px-4 font-small">{{ customer.phone || '+' }}</td>
+            <td  class="py-2 px-2 md:py-3 md:px-4 font-small">
+              <span class="py-2 px-2 md:py-3 md:px-4 text-xs rounded" [ngClass]="{
       'bg-green-600/20 text-green-400': (customer.status || 'active') === 'active',
       'bg-red-600/20 text-red-400': customer.status === 'inactive'
     }">
                 {{ (customer.status || 'active') | titlecase }}
               </span>
             </td>
-            <td class="py-3 px-4 text-right">
+            <td class="py-2 px-2 md:py-3 md:px-4 text-right">
               <button (click)="onEdit(customer)" class="text-blue-400 hover:underline text-sm">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                   stroke="currentColor" class="size-5">
@@ -170,7 +181,7 @@
     </div>
   </div>
   <!-- Success Toast -->
-  <div *ngIf="showToast" class="fixed top-6 right-6 z-[9999]
+  <div *ngIf="showToast" class="fixed top-4 right-4 md:top-6 md:right-6 z-[9999]
          bg-[#0C1424] border border-green-500/30
          text-green-400 px-5 py-3 rounded-xl
          shadow-2xl flex items-center gap-3

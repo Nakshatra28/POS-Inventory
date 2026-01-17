@@ -1,14 +1,15 @@
 <!-- PAGE WRAPPER -->
-<div class="bg-[#020618] min-h-screen text-white px-6">
+<div class="bg-[#020618] min-h-screen text-white px-3 md:px-6">
+
 
   <!-- Title -->
   <p class="text-2xl font-bold mb-4">Dashboard Overview</p>
 
   <!-- TOP CARDS -->
-  <div class="flex justify-center gap-4 mt-4  ">
+ <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4 ">
 
     <!-- Card -->
-    <div class="bg-[#071426] border border-white/10 h-28 rounded-xl w-52 p-3  shadow-md">
+    <div class="bg-[#071426] border border-white/10 h-28 rounded-xl w-full p-3  shadow-md  hover:border-purple-500/40 hover:shadow-lg transition">
       <div class="flex justify-between items-center">
         <p class="text-sm text-gray-300">Total Sales</p>
         <div class="bg-green-500 flex justify-center items-center size-8 rounded-lg">
@@ -23,7 +24,7 @@
     </div>
 
     <!-- Card -->
-    <div class="bg-[#071426] border border-white/10 h-28 rounded-xl w-52 p-3 shadow-md">
+    <div class="bg-[#071426] border border-white/10 h-28 rounded-xl w-full p-3 shadow-md hover:border-purple-500/40 hover:shadow-lg transition">
       <div class="flex justify-between items-center">
         <p class="text-sm text-gray-300">Stock Value</p>
         <div class="bg-blue-500 flex justify-center items-center size-8 rounded-lg">
@@ -34,7 +35,7 @@
     </div>
 
     <!-- Card -->
-    <div class="bg-[#071426] border border-white/10 h-28 rounded-xl w-52 p-3 shadow-md">
+    <div class="bg-[#071426] border border-white/10 h-28 rounded-xl w-full p-3 shadow-md hover:border-purple-500/40 hover:shadow-lg transition">
       <div class="flex justify-between items-center">
         <p class="text-sm text-gray-300">Outstanding Payment</p>
         <div class="bg-orange-500 flex justify-center items-center size-8 rounded-lg">
@@ -45,7 +46,7 @@
     </div>
 
     <!-- Card -->
-    <div class="bg-[#071426] border border-white/10 h-28 rounded-xl w-52 p-3 shadow-md">
+    <div class="bg-[#071426] border border-white/10 h-28 rounded-xl w-full p-3 shadow-md hover:border-purple-500/40 hover:shadow-lg transition">
       <div class="flex justify-between items-center">
         <p class="text-sm text-gray-300"> Customers</p>
         <div class="bg-green-600 flex justify-center items-center size-8 rounded-lg">
@@ -59,26 +60,28 @@
 
   <!-- CHART ROW -->
 <!-- CHART ROW -->
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-6 px-4">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-6">
 
   <!-- Sales & Purchases -->
-  <div class="h-72 bg-[#071426] rounded-xl border border-white/10 shadow-md p-4 flex flex-col">
-    <p class="text-sm font-medium text-gray-300 mb-3">
-      Sales & Purchases Trend
-    </p>
+<div class="h-60 md:h-72 w-full bg-[#071426] rounded-xl border border-white/10 shadow-md p-4 flex flex-col">
+  <p class="text-sm font-medium text-gray-300 mb-3">
+    Sales & Purchases Trend
+  </p>
 
-    <div class="flex-1">
-      <canvas
-        baseChart
-        [data]="salesPurchaseChartData"
-        [options]="salesPurchaseChartOptions"
-        chartType="line">
-      </canvas>
-    </div>
+  <div class="flex-1 w-full">
+    <canvas
+      class="w-full h-full"
+      baseChart
+      [data]="salesPurchaseChartData"
+      [options]="salesPurchaseChartOptions"
+      chartType="bar">
+    </canvas>
   </div>
+</div>
+
 
   <!-- Inventory by Category -->
-<div class="h-72 bg-[#071426] rounded-xl border border-white/10 shadow-md p-4 flex flex-col">
+<div class="bg-[#071426] border border-white/10 rounded-xl shadow-md w-full h-60 md:h-72 p-4 flex flex-col">
   <p class="text-sm font-medium text-gray-300 mb-3">
     Inventory by Category
   </p>
@@ -100,10 +103,10 @@
 
 
   <!-- BOTTOM ROW -->
-  <div class="flex justify-evenly mt-6">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-6">
 
     <!-- Recent Activity -->
-    <div class="w-[46%] py-4 bg-[#071426] rounded-xl border border-white/10 shadow-md">
+    <div class="w-full py-4 bg-[#071426] rounded-xl border border-white/10 shadow-md">
       <p class="px-4 pb-2 text-sm text-gray-300">Recent Activity</p>
 
       <!-- Item -->
@@ -135,8 +138,7 @@
     </div>
 
     <!-- Low Stock Alerts -->
-    <!-- Low Stock Alerts -->
-<div class="w-[46%] py-4 bg-[#071426] rounded-xl border border-white/10 shadow-md">
+<div class="w-full py-4 bg-[#071426] rounded-xl border border-white/10 shadow-md">
 
   <p class="px-4 pb-4 flex items-center text-sm text-gray-300">
     <span
