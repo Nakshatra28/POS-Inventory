@@ -29,7 +29,6 @@ ngOnChanges() {
     this.close.emit();
   }
   saveCustomer(){
-   console.log("SAVE CLICKED → CUSTOMER:", this.customer);
     if(!this.customer.name || !this.customer.email || !this.customer.phone || !this.customer.status ){
        this.toast.emit('Please fill all required fields');
       return

@@ -139,10 +139,9 @@ showToast = false;
 
       this.api.getInvoices().subscribe({
         next: (res) => {
-            console.log('INVOICES FROM API:', res.data);
-          this.allInvoices = res.data; // 🔥 MASTER COPY
-          this.invoiceList = res.data; // 🔥 DISPLAY COPY
-            this.applyFilters(); // 🔥 IMPORTANT
+          this.allInvoices = res.data; 
+          this.invoiceList = res.data;
+            this.applyFilters(); 
           this.isLoading = false;
         },
         error: (err) => {
@@ -233,7 +232,7 @@ onPaymentAdded() {
   this.showPaymentPopup = false;
   this.invoiceForPayment = null;
 
-  // 🔥 THIS IS WHAT UPDATES REMAINING AMOUNT
+
   this.fetchInvoices();
 }
 

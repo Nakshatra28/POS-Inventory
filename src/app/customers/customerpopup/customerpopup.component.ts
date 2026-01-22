@@ -28,7 +28,6 @@ constructor(private api: ApiService) {}
 
 saveCustomer() {
 
-  console.log('Customer before save:', this.customer);
 
   if (!this.customer.name || !this.customer.email) {
     this.toast.emit('Name and email are required');

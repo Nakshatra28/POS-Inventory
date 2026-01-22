@@ -48,8 +48,7 @@ ngOnInit() {
 loadCustomers() {
   this.api.getCustomers().subscribe({
     next: (res: any) => {
-      this.customers = res.data || res; // ✅ IMPORTANT
-      console.log('Customers loaded:', this.customers);
+      this.customers = res.data || res; 
     },
     error: (err) => {
       console.error('Failed to load customers', err);
@@ -62,7 +61,6 @@ loadCustomers() {
     this.close.emit();
   }
   addProduct() {
-    console.log("invoice",this.invoice)
   if (!this.product.quantity || !this.product.price) {
      this.toast.emit('Enter quantity and price');
     return;
@@ -103,7 +101,6 @@ constructor(private api: ApiService, private elementRef: ElementRef) {}
     grandTotal: subTotal + this.invoice.tax - this.invoice.discount
   };
 
-  console.log('FINAL PAYLOAD:', payload);
 
   this.api.createInvoice(payload).subscribe({
     next: () => {
@@ -122,8 +119,7 @@ constructor(private api: ApiService, private elementRef: ElementRef) {}
 loadProducts() {
   this.api.getProducts().subscribe({
     next: (res: any) => {
-      this.products = res.data; // ✅ correct
-      console.log('Products loaded:', this.products);
+      this.products = res.data; 
     },
     error: (err) => {
       console.error('Failed to load products', err);

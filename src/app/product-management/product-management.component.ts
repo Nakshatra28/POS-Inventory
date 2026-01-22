@@ -42,7 +42,6 @@ export class ProductManagementComponent implements OnInit {
     });
   }
   openEdit(prod: any) {
-    console.log('xyz', this.productList);
     this.openEditProduct = true;
     this.dataToEdit = prod;
    
@@ -62,9 +61,8 @@ export class ProductManagementComponent implements OnInit {
 
   getAllProduct() {
     this.api.getProducts().subscribe((res: any) => {
-      this.productList = res.data; // ⭐ very important
-      this.allProducts = res.data; // 👈 important backup
-      console.log('getproduct', res);
+      this.productList = res.data; 
+      this.allProducts = res.data; 
     });
   }
 
@@ -87,7 +85,7 @@ export class ProductManagementComponent implements OnInit {
       this.selectAll = false;
     }
 
-    // auto-check header checkbox if all rows selected
+  
     if (this.selectedProducts.length === this.productList.length) {
       this.selectAll = true;
     }
@@ -96,7 +94,6 @@ export class ProductManagementComponent implements OnInit {
   deleteProduct(id?: string) {
     const idsToDelete = id ? [id] : this.selectedProducts;
 
-    console.log('IDs to delete:', idsToDelete);
 
     if (idsToDelete.length === 0) {
        this.openToast('No product selected');
@@ -135,7 +132,7 @@ export class ProductManagementComponent implements OnInit {
     );
   }
   toggleFilter(event: MouseEvent) {
-    event.stopPropagation(); // 👈 VERY IMPORTANT
+    event.stopPropagation(); 
     this.showFilter = !this.showFilter;
   }
 
@@ -153,17 +150,7 @@ export class ProductManagementComponent implements OnInit {
     );
   }
 
-  // @HostListener('document:click', ['$event'])
-  // onClickOutside(event: MouseEvent) {
-  //   if (!this.showFilter) return;
-
-  //  const clickedInside = this.filterBox.nativeElement.contains(event.target);
-
-  //   if (!clickedInside) {
-  //     this.showFilter = false;
-  //   }
-
-  // }
+  
   toastMessage = '';
   toastVisible = false;
 
@@ -178,10 +165,10 @@ export class ProductManagementComponent implements OnInit {
 
   handleSuccess(message: string) {
     this.openToast(message);
-    this.getAllProduct(); // refresh list
+    this.getAllProduct(); 
   } 
 
   handleError(message: string) {
-    this.openToast(message); // same toast, different text
+    this.openToast(message); 
   }
 }

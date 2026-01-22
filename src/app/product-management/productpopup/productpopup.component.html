@@ -9,8 +9,9 @@
 
     <!-- HEADER -->
     <div class="flex justify-between items-center mb-4 relative z-10">
-      <h2 class="text-xl font-bold text-white tracking-wide">Add Product</h2>
-
+<h2 class="text-base md:text-xl font-semibold text-white tracking-wide">
+  Add Product
+</h2>
       <button (click)="onClose()" class="text-gray-400 hover:text-red-400 transition text-xl">
         ✕
       </button>
@@ -19,13 +20,13 @@
     <!-- MAIN FORM SCROLL AREA -->
     <div 
       class="space-y-5 relative z-10 overflow-y-auto pr-2 
-             max-h-[calc(80vh-150px)]
+            max-h-[calc(90vh-140px)]
              [-ms-overflow-style:'none'] [scrollbar-width:'none']
              [&::-webkit-scrollbar]:hidden"
     >
 
       <!-- SKU + Category -->
-      <div class="grid grid-cols-2 gap-4 px-2">
+   <div class="grid grid-cols-1 md:grid-cols-2 gap-4 px-2">
         <div>
           <label class="text-sm text-gray-300">SKU</label>
           <input
@@ -68,7 +69,7 @@
       </div>
 
       <!-- Cost + Selling + Initial Stock -->
-      <div class="grid grid-cols-3 gap-4 px-2">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 px-2">
         <div>
           <label class="text-sm text-gray-300">Cost</label>
           <input
@@ -100,7 +101,7 @@
       </div>
 
       <!-- MIN + MAX Stock -->
-      <div class="grid grid-cols-2 gap-4 px-2">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 px-2">
 
         <div>
           <label class="text-sm text-gray-300">Minimum Stock</label>
@@ -127,7 +128,8 @@
     </div>
 
     <!-- BUTTONS -->
-    <div class="flex justify-end gap-3 mt-5 relative z-10">
+   <div class="flex flex-col-reverse md:flex-row justify-end gap-3 mt-5">
+
       <button
         (click)="onClose()"
         class="px-4 py-2 text-sm bg-gray-700 text-gray-300 rounded-lg hover:bg-gray-600 transition-all"

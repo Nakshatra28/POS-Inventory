@@ -51,7 +51,7 @@ export class AuditLogsComponent implements OnInit, AfterViewInit {
       container.addEventListener('scroll', () => {
         this.checkScroll();
       });
-      console.log('Scroll listener attached');
+     
     }
   }
 
@@ -61,35 +61,27 @@ export class AuditLogsComponent implements OnInit, AfterViewInit {
     const scrollHeight = container.scrollHeight;
     const clientHeight = container.clientHeight;
 
-    console.log('=== SCROLL EVENT ===');
-    console.log('scrollTop:', scrollTop);
-    console.log('scrollHeight:', scrollHeight);
-    console.log('clientHeight:', clientHeight);
-    console.log('Can scroll?', scrollHeight > clientHeight);
-    console.log('==================');
+  
 
-    // Check if scrolled to bottom (within 50px)
+
     if (scrollTop + clientHeight >= scrollHeight - 50) {
-      console.log('✅ Bottom reached! Loading more...');
       this.loadMoreItems();
     }
   }
 
-  // Load ALL data from backend once
+ 
   loadAllAuditLogs() {
     this.isLoading = true;
-    console.log('Loading all audit logs from backend...');
 
     this.api.getAuditLogsFiltered({}).subscribe({
       next: (res: any) => {
-        console.log('Received ALL logs:', res.data?.length || 0);
         
         this.allLogs = res.data || [];
         this.applyFiltersAndSearch();
         this.isLoading = false;
       },
       error: (err) => {
-        console.error('Error loading audit logs:', err);
+console.error('Error loading audit logs:', err);
         this.isLoading = false;
       }
     });
@@ -155,11 +147,9 @@ export class AuditLogsComponent implements OnInit, AfterViewInit {
   // Load more items on scroll
   loadMoreItems() {
     if (this.currentDisplayCount >= this.filteredLogs.length) {
-      console.log('All items already displayed');
       return;
     }
 
-    console.log('Loading more items...');
     this.currentDisplayCount += this.itemsPerLoad;
     this.updateDisplayedLogs();
   }
@@ -167,12 +157,10 @@ export class AuditLogsComponent implements OnInit, AfterViewInit {
   // Update displayed logs based on current count
   updateDisplayedLogs() {
     this.displayedLogs = this.filteredLogs.slice(0, this.currentDisplayCount);
-    console.log('Displaying:', this.displayedLogs.length, '/', this.filteredLogs.length);
   }
 
   // Search triggered
   searchLogs() {
-    console.log('Search triggered:', this.searchText);
     this.applyFiltersAndSearch();
     this.scrollToTop();
   }
@@ -183,7 +171,6 @@ export class AuditLogsComponent implements OnInit, AfterViewInit {
     this.toDate = '';
     this.selectedModule = 'All';
     this.searchText = '';
-    console.log('Filters reset');
     this.applyFiltersAndSearch();
     this.scrollToTop();
   }
@@ -216,7 +203,6 @@ export class AuditLogsComponent implements OnInit, AfterViewInit {
   loadSummaryCards() {
     this.api.getAuditSummaryCards().subscribe({
       next: (res) => {
-        console.log('SUMMARY CARDS:', res);
         this.summary = res;
       },
       error: (err) => console.error(err)
@@ -246,11 +232,10 @@ toggleFilter() {
   this.showFilter = !this.showFilter;
 }
 selectFilter(option: string) {
-  console.log('FILTER CLICKED:', option);   // 👈 ADD THIS
-  this.selectedModule = option;   // update module filter
+  this.selectedModule = option;  
   this.showFilter = false;
 
-  this.applyFiltersAndSearch();   // 🔥 THIS WAS MISSING
+  this.applyFiltersAndSearch();   
   this.scrollToTop();
 }
 

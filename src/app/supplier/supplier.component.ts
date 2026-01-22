@@ -64,7 +64,6 @@ export class SupplierComponent {
 
   getAllSupplier() {
     this.api.getAllSupplier().subscribe((res) => {
-      console.log('SUPPLIERS FROM API:', res); // 🔍
       this.allSupplier = res;
       this.filteredSuppliers = res;
     });
@@ -95,7 +94,7 @@ toggleSupplier(id: string, event: any) {
     );
   }
 
-  // 🔥 sync with visible rows only
+
   this.selectAll =
     this.selectedSupplier.length === this.filteredSuppliers.length;
 }
@@ -116,7 +115,6 @@ toggleSupplier(id: string, event: any) {
   }
 
   openEdit(supplier:any){
-    console.log('PARENT → supplier clicked:', supplier);
       this.supplierToEdit = supplier;    // 🔥 ADD THIS
     this.openSupplierEdit=true;
   }
@@ -140,7 +138,6 @@ open(message: string, type: 'success' | 'error' = 'success') {
 deleteSupplier(id?: string) {
   const idsToDelete = id ? [id] : this.selectedSupplier;
 
-  console.log('Deleting IDs:', idsToDelete); // 🔍
 
   if (idsToDelete.length === 0) {
     this.open('No supplier selected', 'error');
@@ -149,7 +146,6 @@ deleteSupplier(id?: string) {
 
   this.api.deleteSupplier(idsToDelete).subscribe(
     (res) => {
-      console.log('DELETE RESPONSE:', res); // 🔍
       this.open('Supplier deleted successfully', 'success');
       this.selectedSupplier = [];
       this.selectAll = false;

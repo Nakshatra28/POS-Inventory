@@ -19,15 +19,14 @@ export class PurchesOrderComponent {
 searchText: string = '';
   openPurchasePopup = false;
   selectedPurchaseData: any = null;
-  purchaseOrderList: any[] = [];   // UI list
+  purchaseOrderList: any[] = [];  
  selectedProducts:string[]=[];
-  allPurchaseOrders: any[] = [];   // 👈 MASTER list (MISSING)
+  allPurchaseOrders: any[] = [];  
   constructor(private api: ApiService) {}
   openEditPurches=false;
    dataToEdit: any = null;
    showFilter=false;
 ngOnInit() {
-  console.log("fet",this.fetchPurchaseOrders)
   this.fetchPurchaseOrders();
 }
 fetchPurchaseOrders() {
@@ -35,7 +34,7 @@ fetchPurchaseOrders() {
     next: (res: any) => {
       this.allPurchaseOrders = res.data.map((po: any) => ({
         ...po,
-        expectedDate: po.expectedDeliveryDate, // 🔥 KEY FIX
+        expectedDate: po.expectedDeliveryDate,
       }));
 
       this.purchaseOrderList = this.allPurchaseOrders;
@@ -56,25 +55,21 @@ fetchPurchaseOrders() {
     this.openPurchasePopup = false;
   }
 
-  // editPurchase(po: any) {
-  //   this.selectedPurchaseData =po;
-  //   this.openPurchasePopup = true;
-  //     this.dataToEdit = po;  
-  // }
+
 
    toggleFilter(event: MouseEvent) {
-    event.stopPropagation(); // 👈 VERY IMPORTANT
+    event.stopPropagation(); 
     this.showFilter = !this.showFilter;
   }
 
   editPurchase(po: any) {
-  this.dataToEdit = po;          // send row data
-  this.openEditPurches = true;   // ✅ open EDIT popup
+  this.dataToEdit = po;        
+  this.openEditPurches = true;  
 }
 
 closeEditPurches() {
   this.openEditPurches = false;
-  this.fetchPurchaseOrders(); // refresh table after edit
+  this.fetchPurchaseOrders();
 }
 
   selectAll=false;
@@ -87,7 +82,6 @@ selectedPurchaseIds: string[] = [];
 deletePurchase(id?: string) {
   const idsToDelete = id ? [id] : this.selectedPurchaseIds;
 
-  console.log('🟡 IDs TO DELETE:', idsToDelete);
 
   if (idsToDelete.length === 0) {
     this.openToast('No purchase order selected');
@@ -104,11 +98,9 @@ deletePurchase(id?: string) {
   let completed = 0;
 
   idsToDelete.forEach((poId) => {
-    console.log('🔴 Deleting PO ID:', poId);
 
     this.api.deletePurchaseOrder(poId).subscribe({
       next: () => {
-        console.log('✅ Deleted:', poId);
         completed++;
 
         // when all deletes are done
@@ -183,8 +175,7 @@ openToast(message: string) {
 handleSuccess(message: string) {
   this.openToast(message);
   this.closePopup();
-   this.fetchPurchaseOrders(); // ✅ refresh list only
-  // later: refresh list from backend
+   this.fetchPurchaseOrders(); 
 }
 
 handleError(message: string) {
@@ -212,25 +203,25 @@ togglePurchase(id: string, event: any) {
     this.selectAll = false;
   }
 
-  // auto-check select all
+
   if (this.selectedPurchaseIds.length === this.purchaseOrderList.length) {
     this.selectAll = true;
   }
 }
 
-// ✅ edit success
+
 onPurchaseUpdated() {
   this.openToast('Purchase order updated successfully');
   this.closeEditPurches();
   this.fetchPurchaseOrders();
 }
 
-// ❌ edit api error
+
 onPurchaseUpdateError(message: string) {
   this.openToast(message || 'Failed to update purchase order');
 }
 
-// ❌ validation error (from savePurchase)
+
 onPurchaseSaveError(message: string) {
   this.openToast(message);
 }
@@ -242,7 +233,7 @@ receivePurchase(id: string) {
   this.api.receivePurchaseOrder(id).subscribe({
     next: () => {
       this.openToast('Purchase received & stock updated');
-      this.fetchPurchaseOrders(); // refresh table
+      this.fetchPurchaseOrders(); 
     },
     error: (err) => {
       console.error(err);

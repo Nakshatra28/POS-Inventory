@@ -25,8 +25,7 @@ selectedProduct: any = null;
 loadProducts() {
   this.api.getProducts().subscribe({
     next: (res: any) => {
-      console.log('🟢 PRODUCTS API RESPONSE:', res);
-      this.products = res.data || [];   // 🔥 IMPORTANT
+      this.products = res.data || [];  
     },
     error: err => console.error(err)
   });
@@ -57,7 +56,6 @@ ngOnInit() {
 }
 
 savePurchase() {
-  console.log('🟡 FORM DATA:', this.purchase);
 
   if (
     !this.purchase.supplierName ||
@@ -82,7 +80,6 @@ savePurchase() {
     return;
   }
 
-  // ✅ BUILD PAYLOAD
   const payload = {
     poNumber: this.purchase.purchaseNo,
     supplierName: this.purchase.supplierName,
@@ -101,12 +98,10 @@ savePurchase() {
     status: this.purchase.status
   };
 
-  console.log('🚀 FINAL PAYLOAD:', payload);
 
-  // ✅ API CALL
+  
   this.api.createPurchaseOrder(payload).subscribe({
     next: (res: any) => {
-      console.log('✅ BACKEND RESPONSE:', res);
       this.purchaseCreated.emit('Purchase Order created successfully');
       this.onClose();
     },

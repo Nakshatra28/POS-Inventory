@@ -44,7 +44,6 @@ export class AccountsComponent implements OnInit {
     this.api.getAccountSummary().subscribe({
       next: (res) => {
         this.accountSummary = res;
-        console.log('Account Summary:', res);
       },
       error: (err) => {
         console.error('Failed to load account summary', err);
@@ -61,7 +60,6 @@ export class AccountsComponent implements OnInit {
         this.accountsList = res;
         this.filteredAccounts = res; 
         this.isLoadingAccounts = false;
-        console.log('Accounts List:', res);
       },
       error: (err) => {
         console.error('Failed to load accounts list', err);
@@ -107,7 +105,6 @@ loadLedger(code: string) {
     next: (res) => {
       this.ledgerList = res;
       this.isLedgerLoading = false;
-      console.log('Ledger:', res);
     },
     error: (err) => {
       console.error('Failed to load ledger', err);

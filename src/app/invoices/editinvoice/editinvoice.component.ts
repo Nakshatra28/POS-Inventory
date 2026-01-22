@@ -108,13 +108,12 @@ export class EditinvoiceComponent implements OnInit, OnChanges {
     grandTotal: subTotal + this.invoice.tax - this.invoice.discount
   };
 
-  console.log('UPDATE PAYLOAD:', payload);
 
-  // 🔥 UPDATE invoice (not create)
+ 
   this.api.updateInvoice(this.invoice._id, payload).subscribe(
     () => {
    this.toast.emit('Invoice updated successfully');
-      this.close.emit(); // close edit popup
+      this.close.emit(); 
     },
     (error) => {
       console.error('Update failed', error);
@@ -124,7 +123,6 @@ export class EditinvoiceComponent implements OnInit, OnChanges {
 }
 
   addProduct() {
-    console.log('invoice', this.invoice);
     if (!this.product.quantity || !this.product.price) {
       this.toast.emit('Enter quantity and price');
       return;

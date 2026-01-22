@@ -28,16 +28,14 @@ export class SuppliereditComponent {
   
     @Input() data: any;
 ngOnInit(){
-  console.log( "svae supp",this.data)
 
 }
 
- // 🔥 THIS IS THE KEY FIX
+ 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['data'] && this.data) {
       this.supplier = { ...this.data };   // populate form
       this.supplierId = this.data._id;    // store id
-      console.log('Supplier edit data:', this.supplier);
     }
   }
 
@@ -55,11 +53,11 @@ ngOnInit(){
   if (this.supplierId) {
     this.api.updateSupplier(this.supplierId, this.supplier).subscribe({
       next: () => {
-        this.supplierUpdated.emit();   // ✅ success
+        this.supplierUpdated.emit();  
         this.close.emit();
       },
       error: () => {
-        this.supplierUpdateError.emit('Failed to update supplier'); // ❌ error
+        this.supplierUpdateError.emit('Failed to update supplier'); 
       }
     });
   }

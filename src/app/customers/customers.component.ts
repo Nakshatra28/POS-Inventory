@@ -71,7 +71,6 @@ export class CustomersComponent implements OnInit {
   }
 
   onEdit(customer: any) {
-    console.log('customer', this.customerList);
     this.openEditcustomer = true;
     this.dataToEdit = customer;
   }
@@ -87,7 +86,6 @@ export class CustomersComponent implements OnInit {
 
     this.api.getCustomers().subscribe({
       next: (res: any) => {
-        console.log('API DATA:', res);
 
         this.allCustomer = res; // 🔥 REQUIRED
         this.filteredCustomers = res; // 🔥 REQUIRED
@@ -139,10 +137,9 @@ export class CustomersComponent implements OnInit {
 
 
   deleteCustomer(id?: string) {
-    console.log('delete', this.deleteCustomer);
+    
     const idsToDelete = id ? [id] : this.selectedCustomers;
 
-    console.log('IDs to delete:', idsToDelete);
 
     if (idsToDelete.length === 0) {
  this.showToastMessage('No customer selected');
@@ -182,7 +179,6 @@ export class CustomersComponent implements OnInit {
   selectedStatus = '';
 
   applyStatusFilter(status: string) {
-    console.log('status', status);
     this.selectedStatus = status;
     this.showFilter = false;
 

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { ApiService } from '../service/api.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -7,11 +7,12 @@ import { StockAdjustmentPopupComponent } from './stock-adjustment-popup/stock-ad
 @Component({
   selector: 'app-stock-management',
   standalone: true,
-  imports: [FormsModule,CommonModule,StockAdjustmentPopupComponent],
+  imports: [FormsModule, CommonModule, StockAdjustmentPopupComponent],
   templateUrl: './stock-management.component.html',
   styleUrl: './stock-management.component.css'
 })
 export class StockManagementComponent {
+
   stockMovements: any[] = [];
   filteredMovements: any[] = [];
 
@@ -56,21 +57,12 @@ export class StockManagementComponent {
     });
   }
 
-  applyTypeFilter(type: 'ALL' | 'IN' | 'OUT' | 'ADJUST') {
-    this.selectedType = type;
-    this.applyFilters();
-  }
-
   applySearch() {
     this.applyFilters();
   }
 
   applyFilters() {
     let data = [...this.stockMovements];
-
-    if (this.selectedType !== 'ALL') {
-      data = data.filter(m => m.type === this.selectedType);
-    }
 
     const text = this.searchText.toLowerCase().trim();
     if (text) {
@@ -85,53 +77,45 @@ export class StockManagementComponent {
     this.filteredMovements = data;
   }
 
-onAdjustmentSuccess() {
-  this.openToast('Stock adjusted successfully');
-  this.loadStockMovements();
-  this.loadSummary();
-}
+  // 🔥 FIXED VIEW LOGIC
+  viewMovement(m: any) {
+    if (m.referenceType === 'invoice') {
+      this.viewInvoice(m.referenceId);
+    }
+    else if (m.referenceType === 'purchase') {
+      this.viewPurchaseOrder(m.referenceId);
+    }
+    else if (m.type === 'ADJUST') {
+      this.viewAdjustment(m);
+    }
+    else {
+      this.openToast('No details available');
+    }
+  }
+
+  viewInvoice(refId: string) {
+    this.openToast('Opening Invoice: ' + refId);
+  }
+
+  viewPurchaseOrder(refId: string) {
+    this.openToast('Opening Purchase Order: ' + refId);
+  }
+
+  viewAdjustment(m: any) {
+    const message =
+      `Adjustment | ${m.productName} | Qty: ${m.quantity} | By: ${m.user}`;
+    this.openToast(message);
+  }
+
+  onAdjustmentSuccess() {
+    this.openToast('Stock adjusted successfully');
+    this.loadStockMovements();
+    this.loadSummary();
+  }
 
   openToast(message: string) {
     this.toastMessage = message;
     this.toastVisible = true;
     setTimeout(() => (this.toastVisible = false), 3000);
   }
-
-
-  viewMovement(m: any) {
-  if (m.referenceType === 'purchase') {
-    this.viewPurchaseOrder(m.referenceId);
-  }
-  else if (m.referenceType === 'invoice') {
-    this.viewInvoice(m.referenceId);
-  }
-  else if (m.type === 'ADJUST') {
-    this.viewAdjustment(m);
-  }
 }
-
-viewAdjustment(m: any) {
-  const message =
-    `Adjustment: ${m.productName} | ` +
-    `Qty: ${m.quantity} | ` +
-    `Reason: ${m.referenceId} | ` +
-    `By: ${m.user}`;
-
-  this.openToast(message);
-}
-
-
-viewPurchaseOrder(refId: string) {
-  console.log('Open Purchase Order:', refId);
-  // later: open modal or navigate
-}
-
-viewInvoice(refId: string) {
-  console.log('Open Invoice:', refId);
-  // later: open modal or navigate
-}
-
-
-
-}
-

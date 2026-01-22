@@ -30,7 +30,6 @@ export class PaymentpopupComponent {
 
 
   ngOnInit() {
-  console.log('INVOICE ID:', this.invoiceId);
 }
   onClose() {
     this.close.emit();
@@ -58,7 +57,7 @@ ngOnChanges() {
   }
 
   const payload = {
-    invoiceId: this.invoiceId,   // ✅ guaranteed now
+    invoiceId: this.invoiceId,  
     customerName: this.payment.customerName,
     amount: this.payment.amount,
     method: this.payment.method,
@@ -66,11 +65,9 @@ ngOnChanges() {
     note: this.payment.note,
   };
 
-  console.log('FINAL PAYMENT PAYLOAD:', payload);
 
 this.api.createPayment(payload).subscribe({
   next: () => {
-    console.log('✅ Payment saved');
     this.paymentAdded.emit();
   },
   error: (err) => {

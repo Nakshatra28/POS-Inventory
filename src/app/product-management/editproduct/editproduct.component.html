@@ -1,7 +1,7 @@
 <div class="fixed inset-0 bg-black/60 backdrop-blur-md flex items-center justify-center z-[9999]">
 
   <!-- POPUP CARD -->
-  <div class="bg-[#0C1424] w-[520px] h-[80vh] rounded-2xl shadow-xl border border-white/10 p-7 relative overflow-hidden flex flex-col">
+<div class="bg-[#0C1424] w-[520px] h-[80vh] rounded-2xl shadow-xl border border-white/10 p-7 relative overflow-hidden flex flex-col">
 
     <!-- Accent Blurs -->
     <div class="absolute -top-10 -right-10 w-36 h-36 bg-purple-700/25 rounded-full blur-3xl"></div>
@@ -9,7 +9,10 @@
 
     <!-- HEADER -->
     <div class="flex justify-between items-center mb-4 relative z-10">
-      <h2 class="text-xl font-bold text-white tracking-wide">Edit Product</h2>
+    <h2 class="text-base md:text-xl font-semibold text-white tracking-wide">
+  Edit Product
+</h2>
+
 
       <button (click)="closeEdit()" class="text-gray-400 hover:text-red-400 transition text-xl">
         ✕
@@ -19,13 +22,13 @@
     <!-- MAIN FORM SCROLL AREA -->
     <div 
       class="space-y-5 relative z-10 overflow-y-auto pr-2 
-             max-h-[calc(80vh-150px)]
+             max-h-[calc(90vh-140px)]
              [-ms-overflow-style:'none'] [scrollbar-width:'none']
              [&::-webkit-scrollbar]:hidden"
     >
 
       <!-- SKU + Category -->
-      <div class="grid grid-cols-2 gap-4 px-2">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 px-2">  
         <div>
           <label class="text-sm text-gray-300">SKU</label>
           <input
@@ -67,7 +70,7 @@
         </div>
 
       <!-- Cost + Selling + Initial Stock -->
-      <div class="grid grid-cols-3 gap-4 px-2">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 px-2">
         <div>
           <label class="text-sm text-gray-300">Cost</label>
           <input
@@ -126,7 +129,7 @@
     </div>
 
     <!-- BUTTONS -->
-    <div class="flex justify-end gap-3 mt-5 relative z-10">
+<div class="flex flex-col-reverse md:flex-row justify-end gap-3 mt-5 relative z-10">
       <button
         (click)="closeEdit()"
         class="px-4 py-2 text-sm bg-gray-700 text-gray-300 rounded-lg hover:bg-gray-600 transition-all"

@@ -1,7 +1,7 @@
 <!-- Header -->
 <div class="flex justify-between items-center px-4">
   <div>
-    <p class="text-3xl">Audit Logs</p>
+<p class="text-xl md:text-3xl font-semibold">Audit Logs</p>
     <p class="text-xs text-gray-500 px-1">
     Track all system activities and user actions
     </p>
@@ -9,10 +9,9 @@
 </div>
 
 <!-- TOP CARDS -->
-<div class="flex justify-even gap-8 mt-4 px-4">
-
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 px-4 mt-4">
   <!-- Card -->
-  <div class="bg-[#071426] border border-white/10 h-28 rounded-xl w-52 p-3 shadow-md">
+<div class="bg-[#071426] border border-white/10 h-28 rounded-xl p-3 shadow-md">
     <div class="flex justify-between items-center">
       <p class="text-sm text-gray-300">Total Sales</p>
       <div class="bg-green-500 flex justify-center items-center size-8 rounded-lg">
@@ -27,7 +26,7 @@
   </div>
 
   <!-- Card -->
-  <div class="bg-[#071426] border border-white/10 h-28 rounded-xl w-52 p-3 shadow-md">
+<div class="bg-[#071426] border border-white/10 h-28 rounded-xl p-3 shadow-md">
     <div class="flex justify-between items-center">
       <p class="text-sm text-gray-300">Stock Value</p>
       <div class="bg-blue-500 flex justify-center items-center size-8 rounded-lg">
@@ -38,7 +37,7 @@
   </div>
 
   <!-- Card -->
-  <div class="bg-[#071426] border border-white/10 h-28 rounded-xl w-52 p-3 shadow-md">
+<div class="bg-[#071426] border border-white/10 h-28 rounded-xl p-3 shadow-md">
     <div class="flex justify-between items-center">
       <p class="text-sm text-gray-300">Outstanding Payment</p>
       <div class="bg-orange-500 flex justify-center items-center size-8 rounded-lg">
@@ -49,7 +48,7 @@
   </div>
 
   <!-- Card -->
-  <div class="bg-[#071426] border border-white/10 h-28 rounded-xl w-52 p-3 shadow-md">
+<div class="bg-[#071426] border border-white/10 h-28 rounded-xl p-3 shadow-md">
     <div class="flex justify-between items-center">
       <p class="text-sm text-gray-300">Active Customers</p>
       <div class="bg-green-600 flex justify-center items-center size-8 rounded-lg">
@@ -62,10 +61,10 @@
 </div>
 
 <!-- Search + Filter Row -->
-<div class="flex gap-4 px-6 mt-10 mb-8">
+<div class="flex flex-col md:flex-row gap-3 px-4 md:px-6 mt-6 mb-8">
   <!-- Search -->
   <div>
-    <div class="flex items-center border border-white/20 w-64 py-0.5 rounded-lg px-2">
+    <div class="flex items-center border border-white/20 w-full md:w-64 py-0.5 rounded-lg px-2">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
         <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
       </svg>
@@ -74,12 +73,12 @@
         [(ngModel)]="searchText"
         (input)="searchLogs()"
         placeholder="Search"
-        class="px-2 bg-transparent outline-none">
+        class="px-2 bg-transparent outline-none w-full">
     </div>
   </div>
 
   <!-- Filter -->
-  <div class="flex gap-4">
+ <div class="flex flex-col sm:flex-row gap-3 w-full">
 <div class="relative">
 
   <!-- Filter Button -->
@@ -119,13 +118,12 @@
 
     <button
       (click)="exportLogs()"
-      class="bg-green-600 px-4 py-1.5 rounded text-sm">
-      Export CSV
+class="w-full sm:w-auto bg-green-600 px-4 py-1.5 rounded text-sm">      Export CSV
     </button>
 
       <button
     (click)="resetFilter()"
-    class="bg-gray-600 px-4 py-1.5 rounded text-sm">
+  class="w-full sm:w-auto bg-gray-600 px-4 py-1.5 rounded text-sm">
     Reset
   </button>
   </div>
