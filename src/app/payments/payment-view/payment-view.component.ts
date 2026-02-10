@@ -9,7 +9,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './payment-view.component.css'
 })
 export class PaymentViewComponent {
-  @Input() payment: any;      // payment data to display
+  @Input() payment: any;     
   @Output() close = new EventEmitter<void>();
 
 }

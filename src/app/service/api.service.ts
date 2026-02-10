@@ -125,7 +125,7 @@ createPayment(data: any) {
   return this.http.post('http://localhost:5000/api/payments', data);
 }
 
-  // 🔹 ACCOUNTS SUMMARY
+  //  ACCOUNTS SUMMARY
   getAccountSummary() {
     return this.http.get<any>('http://localhost:5000/api/accounts/summary');
   }
@@ -228,6 +228,15 @@ getRecentAuditLogs() {
 getLowStockSummary() {
   return this.http.get<any>(
     'http://localhost:5000/api/products/low-stock'
+  );
+}
+
+
+// -------- AUTH --------
+login(data: { email: string; password: string }) {
+  return this.http.post(
+    'http://localhost:5000/api/auth/login',
+    data
   );
 }
 

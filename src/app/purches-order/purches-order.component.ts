@@ -108,7 +108,7 @@ deletePurchase(id?: string) {
           this.openToast('Purchase Order(s) deleted successfully');
           this.selectedPurchaseIds = [];
           this.selectAll = false;
-          this.fetchPurchaseOrders(); // refresh table ONCE
+          this.fetchPurchaseOrders(); 
         }
       },
       error: (err) => {

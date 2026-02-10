@@ -38,7 +38,7 @@ this.toast.emit('Please fill all required fields');
 
   this.api.createSupplier(this.supplier).subscribe({
     next: () => {
-       this.supplierAdded.emit(); // 🔥 tell parent
+       this.supplierAdded.emit();  
       this.close.emit();
     },
     error: () => {

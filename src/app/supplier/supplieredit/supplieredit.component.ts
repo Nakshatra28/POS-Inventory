@@ -34,8 +34,8 @@ ngOnInit(){
  
   ngOnChanges(changes: SimpleChanges) {
     if (changes['data'] && this.data) {
-      this.supplier = { ...this.data };   // populate form
-      this.supplierId = this.data._id;    // store id
+      this.supplier = { ...this.data };   
+      this.supplierId = this.data._id;    
     }
   }
 

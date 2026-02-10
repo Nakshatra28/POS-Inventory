@@ -53,7 +53,7 @@ showToast = false;
     }
 
     openPopup() {
-      this.selectedInvoiceData = null; // create mode
+      this.selectedInvoiceData = null;  
       this.openInvoicePopup = true;
     }
 
@@ -101,7 +101,6 @@ showToast = false;
           this.selectedInvoice = [];
           this.selectAll = false;
 
-          // 🔥 TOAST HERE
           this.openToast('Invoice deleted successfully');
         },
         error: () => {
@@ -128,7 +127,6 @@ showToast = false;
         this.selectAll = false;
       }
 
-      // auto-check header checkbox if all rows selected
       if (this.selectedInvoice.length === this.invoiceList.length) {
         this.selectAll = true;
       }
@@ -184,7 +182,7 @@ showToast = false;
     applyFilters() {
       let data = [...this.allInvoices];
 
-      // 🔹 Status filter
+
       if (this.selectedStatus) {
         const normalized =
           this.selectedStatus === 'Paid'
@@ -196,7 +194,7 @@ showToast = false;
         data = data.filter((inv) => inv.paymentStatus === normalized);
       }
 
-      // 🔹 Search filter
+     
       const text = this.searchText?.trim().toLowerCase();
 
       if (text) {

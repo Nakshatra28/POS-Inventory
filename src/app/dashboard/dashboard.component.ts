@@ -156,7 +156,8 @@ lowStockCount = 0;
     this.salesPurchaseChartData.datasets[0].data = months.map(m => sales[m] || 0);
     this.salesPurchaseChartData.datasets[1].data = months.map(m => purchases[m] || 0);
 
-    setTimeout(() => this.salesChart?.update());
+   setTimeout(() => this.salesChart?.chart?.update());
+
   }
 
   /* ================= INVENTORY DONUT ================= */
@@ -182,7 +183,7 @@ lowStockCount = 0;
         ]
       };
 
-      setTimeout(() => this.inventoryChart?.update());
+    setTimeout(() => this.inventoryChart?.chart?.update());
     });
   }
 

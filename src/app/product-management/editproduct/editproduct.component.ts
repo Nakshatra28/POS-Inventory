@@ -20,7 +20,7 @@ export class EditproductComponent {
 
   ngOnChanges() {
     if (this.data) {
-      this.product = { ...this.data }; // clone data
+      this.product = { ...this.data }; 
     }
   }
 

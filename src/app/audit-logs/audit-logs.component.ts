@@ -14,9 +14,9 @@ import { ClickOutsideDirective } from '../click-outside.directive';
 export class AuditLogsComponent implements OnInit, AfterViewInit {
   @ViewChild('scrollContainer') scrollContainer!: ElementRef;
 
-  allLogs: any[] = []; // Store ALL logs from backend
-  filteredLogs: any[] = []; // Store filtered logs
-  displayedLogs: any[] = []; // Logs currently shown (paginated)
+  allLogs: any[] = []; 
+  filteredLogs: any[] = []; 
+  displayedLogs: any[] = []; 
    showFilter = false;
   searchText = '';
   isLoading = false;
@@ -25,11 +25,11 @@ export class AuditLogsComponent implements OnInit, AfterViewInit {
   selectedModule = 'All';
   modules = ['All', 'Invoice', 'Payment', 'Purchase', 'Product', 'Customer'];
   
-  // Frontend Pagination
-  currentDisplayCount = 5; // Start with 5
-  itemsPerLoad = 5; // Load 5 more on each scroll
+
+  currentDisplayCount = 5; 
+  itemsPerLoad = 5; 
   
-  // Summary
+ 
   summary = {
     totalSales: 0,
     stockValue: 0,
@@ -45,7 +45,6 @@ export class AuditLogsComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // Attach scroll listener after view init
     if (this.scrollContainer) {
       const container = this.scrollContainer.nativeElement;
       container.addEventListener('scroll', () => {
@@ -87,12 +86,9 @@ console.error('Error loading audit logs:', err);
     });
   }
 
-  // Apply filters and search on frontend
  applyFiltersAndSearch() {
-  // Start with all logs
   let filtered = [...this.allLogs];
 
-  /* ---------------- DATE FILTER ---------------- */
   if (this.fromDate) {
     const from = new Date(this.fromDate);
     filtered = filtered.filter(log => new Date(log.createdAt) >= from);
@@ -103,10 +99,8 @@ console.error('Error loading audit logs:', err);
     filtered = filtered.filter(log => new Date(log.createdAt) <= to);
   }
 
-  /* ---------------- MODULE FILTER ---------------- */
   if (this.selectedModule !== 'All') {
     filtered = filtered.filter(log => {
-      // Safely get module-like value from backend log
       const moduleValue =
         log.module ||
         log.entity ||
@@ -122,7 +116,6 @@ console.error('Error loading audit logs:', err);
     });
   }
 
-  /* ---------------- SEARCH FILTER ---------------- */
   if (this.searchText) {
     const search = this.searchText.toLowerCase();
 
@@ -137,14 +130,12 @@ console.error('Error loading audit logs:', err);
     );
   }
 
-  /* ---------------- FINAL UPDATE ---------------- */
   this.filteredLogs = filtered;
   this.currentDisplayCount = this.itemsPerLoad;
   this.updateDisplayedLogs();
 }
 
 
-  // Load more items on scroll
   loadMoreItems() {
     if (this.currentDisplayCount >= this.filteredLogs.length) {
       return;
@@ -154,18 +145,15 @@ console.error('Error loading audit logs:', err);
     this.updateDisplayedLogs();
   }
 
-  // Update displayed logs based on current count
   updateDisplayedLogs() {
     this.displayedLogs = this.filteredLogs.slice(0, this.currentDisplayCount);
   }
 
-  // Search triggered
   searchLogs() {
     this.applyFiltersAndSearch();
     this.scrollToTop();
   }
 
-  // Reset filter button
   resetFilter() {
     this.fromDate = '';
     this.toDate = '';
@@ -175,14 +163,12 @@ console.error('Error loading audit logs:', err);
     this.scrollToTop();
   }
 
-  // Scroll to top of container
   scrollToTop() {
     if (this.scrollContainer) {
       this.scrollContainer.nativeElement.scrollTop = 0;
     }
   }
 
-  // Export logs
   exportLogs() {
     const params: any = {};
     if (this.fromDate) params.from = this.fromDate;
@@ -199,7 +185,6 @@ console.error('Error loading audit logs:', err);
     });
   }
 
-  // Load summary cards
   loadSummaryCards() {
     this.api.getAuditSummaryCards().subscribe({
       next: (res) => {
@@ -209,7 +194,6 @@ console.error('Error loading audit logs:', err);
     });
   }
 
-  // Check if more items available
   get hasMoreItems(): boolean {
     return this.currentDisplayCount < this.filteredLogs.length;
   }

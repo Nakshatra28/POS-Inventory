@@ -67,7 +67,7 @@ export class CustomersComponent implements OnInit {
 
     setTimeout(() => {
       this.showToast = false;
-    }, 3000); // auto hide after 3 sec
+    }, 3000);
   }
 
   onEdit(customer: any) {
@@ -87,8 +87,8 @@ export class CustomersComponent implements OnInit {
     this.api.getCustomers().subscribe({
       next: (res: any) => {
 
-        this.allCustomer = res; // 🔥 REQUIRED
-        this.filteredCustomers = res; // 🔥 REQUIRED
+        this.allCustomer = res; 
+        this.filteredCustomers = res; 
 
         this.isLoading = false;
       },
@@ -101,10 +101,10 @@ export class CustomersComponent implements OnInit {
   }
 
   trackById(_: number, item: any) {
-    return item?._id; // ✅ FIXED
+    return item?._id; 
   }
   toggleFilter(event: MouseEvent) {
-    event.stopPropagation(); // 🔥 THIS IS REQUIRED
+    event.stopPropagation(); 
     this.showFilter = !this.showFilter;
   }
 
@@ -118,7 +118,6 @@ export class CustomersComponent implements OnInit {
       this.selectAll = false;
     }
 
-    // auto-check header checkbox if all rows selected
     if (this.selectedCustomers.length === this.customerList.length) {
       this.selectAll = true;
     }

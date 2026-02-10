@@ -19,10 +19,9 @@ export class PaymentsComponent implements OnInit {
   searchText: string = '';
 
   // ===== DATA SOURCES =====
-  originalPayments: any[] = [];   // API truth
-  allPayments: any[] = [];        // filtered list
+  originalPayments: any[] = [];  
+  allPayments: any[] = [];       
   visiblePayments: any[] = [];    // UI list (scroll)
-
   // ===== SCROLL CONFIG =====
   itemsToShow = 5;
   currentIndex = 0;

@@ -77,7 +77,7 @@ export class StockManagementComponent {
     this.filteredMovements = data;
   }
 
-  // 🔥 FIXED VIEW LOGIC
+  //  FIXED VIEW LOGIC
   viewMovement(m: any) {
     if (m.referenceType === 'invoice') {
       this.viewInvoice(m.referenceId);

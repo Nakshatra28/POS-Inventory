@@ -1,9 +1,11 @@
-    import { Routes } from '@angular/router';
-    import { DashboardComponent } from './dashboard/dashboard.component';
-    import { ProductManagementComponent } from './product-management/product-management.component';
-    import { StockManagementComponent } from './stock-management/stock-management.component';
+import { Routes } from '@angular/router';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './auth.guard';
 
-    import { SupplierComponent } from './supplier/supplier.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProductManagementComponent } from './product-management/product-management.component';
+import { StockManagementComponent } from './stock-management/stock-management.component';
+import { SupplierComponent } from './supplier/supplier.component';
 import { CustomersComponent } from './customers/customers.component';
 import { InvoicesComponent } from './invoices/invoices.component';
 import { PurchesOrderComponent } from './purches-order/purches-order.component';
@@ -12,16 +14,18 @@ import { AuditLogsComponent } from './audit-logs/audit-logs.component';
 import { AccountsComponent } from './accounts/accounts.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
 
-    { path: 'dashboard', component: DashboardComponent },
-    { path: 'product', component: ProductManagementComponent },
-    { path: 'stock', component: StockManagementComponent },
-    { path: 'supplier', component: SupplierComponent },
-    {path:'invoice',component:InvoicesComponent},
-    {path:'purches',component:PurchesOrderComponent},
-    {path:'customer',component:CustomersComponent},
-    {path:'payment',component:PaymentsComponent},
-    {path:'audit-log',component:AuditLogsComponent},
-    {path:'account',component:AccountsComponent}
-    ];
+  { path: 'login', component: LoginComponent },
+
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'product', component: ProductManagementComponent, canActivate: [AuthGuard] },
+  { path: 'stock', component: StockManagementComponent, canActivate: [AuthGuard] },
+  { path: 'supplier', component: SupplierComponent, canActivate: [AuthGuard] },
+  { path: 'invoice', component: InvoicesComponent, canActivate: [AuthGuard] },
+  { path: 'purches', component: PurchesOrderComponent, canActivate: [AuthGuard] },
+  { path: 'customer', component: CustomersComponent, canActivate: [AuthGuard] },
+  { path: 'payment', component: PaymentsComponent, canActivate: [AuthGuard] },
+  { path: 'audit-log', component: AuditLogsComponent, canActivate: [AuthGuard] },
+  { path: 'account', component: AccountsComponent, canActivate: [AuthGuard] }
+];

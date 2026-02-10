@@ -115,7 +115,7 @@ toggleSupplier(id: string, event: any) {
   }
 
   openEdit(supplier:any){
-      this.supplierToEdit = supplier;    // 🔥 ADD THIS
+      this.supplierToEdit = supplier;   
     this.openSupplierEdit=true;
   }
 
@@ -137,7 +137,7 @@ open(message: string, type: 'success' | 'error' = 'success') {
   
 deleteSupplier(id?: string) {
   const idsToDelete = id ? [id] : this.selectedSupplier;
-
+``
 
   if (idsToDelete.length === 0) {
     this.open('No supplier selected', 'error');
@@ -160,7 +160,7 @@ deleteSupplier(id?: string) {
 
 
 
-// 🔔 Toast state
+// Toast state
 toastVisible = false;
 toastMessage = '';
 toastType: 'success' | 'error' = 'success';

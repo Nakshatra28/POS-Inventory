@@ -22,7 +22,7 @@ export class PurchesordereditComponent {
 
   purchase: any = {};
 
-  // 🔥 SAME AS PRODUCT
+ 
  ngOnChanges() {
   if (this.data) {
     this.purchase = {
@@ -74,11 +74,11 @@ updatePurchase() {
 
   this.api.updatePurchaseOrder(this.purchase._id, payload).subscribe({
     next: () => {
-      this.purchaseUpdated.emit(); // ✅ success
+      this.purchaseUpdated.emit(); 
       this.close.emit();
     },
     error: () => {
-      this.purchaseUpdateError.emit('Failed to update purchase order'); // ❌ error
+      this.purchaseUpdateError.emit('Failed to update purchase order'); 
     }
   });
 }

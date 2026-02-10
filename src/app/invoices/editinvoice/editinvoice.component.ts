@@ -27,7 +27,7 @@ export class EditinvoiceComponent implements OnInit, OnChanges {
 
   invoice = {
       _id: '', 
-    invoiceNo: '', // ✅ ADD THIS
+    invoiceNo: '', 
     customerId: '',
     customerName: '',
     customerPhone: '',
@@ -96,7 +96,6 @@ export class EditinvoiceComponent implements OnInit, OnChanges {
     return;
   }
 
-  // calculate totals
   const subTotal = this.invoice.items.reduce(
     (sum, item) => sum + item.quantity * item.price,
     0
@@ -130,7 +129,7 @@ export class EditinvoiceComponent implements OnInit, OnChanges {
 
     this.invoice.items.push({ ...this.product });
 
-    // reset product input
+ 
     this.product = {
       productId: '',
       quantity: 1,

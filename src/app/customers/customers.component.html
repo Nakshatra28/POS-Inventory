@@ -113,9 +113,9 @@ class="flex items-center gap-1 border border-white/20
 
       <div *ngIf="!isLoading && error" class="w-full py-6 text-center text-red-400">{{ error }}</div>
 
-      <!-- Table -->
+      
       <table *ngIf="!isLoading && !error" class="w-full text-left text-sm">
-        <!-- Table Head -->
+     
         <thead class="bg-gray-800 text-gray-300">
           <tr>
             <th class="py-3 px-4">
@@ -132,7 +132,7 @@ class="flex items-center gap-1 border border-white/20
           </tr>
         </thead>
 
-        <!-- Table Body -->
+        
         <tbody class="text-gray-200 bg-[#0F172B] backdrop-blur-xl ">
           <tr *ngFor="let customer of filteredCustomers; let i = index">
 
@@ -172,7 +172,7 @@ class="flex items-center gap-1 border border-white/20
             </td>
           </tr>
 
-          <!-- Empty state -->
+         
           <tr *ngIf="filteredCustomers.length === 0" class="border-t border-white/10">
             <td colspan="6" class="py-6 px-4 text-center text-gray-400">No customer found.</td>
           </tr>
@@ -180,13 +180,13 @@ class="flex items-center gap-1 border border-white/20
       </table>
     </div>
   </div>
-  <!-- Success Toast -->
+ 
   <div *ngIf="showToast" class="fixed top-4 right-4 md:top-6 md:right-6 z-[9999]
          bg-[#0C1424] border border-green-500/30
          text-green-400 px-5 py-3 rounded-xl
          shadow-2xl flex items-center gap-3
          animate-slide-in">
-    <!-- Icon -->
+
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
       class="size-6">
       <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75" />

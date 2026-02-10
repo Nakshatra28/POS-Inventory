@@ -21,7 +21,7 @@ export class EditcustomerComponent {
 
 ngOnChanges() {
   if (this.data) {
-    this.customer = { ...this.data }; // clone to avoid mutation
+    this.customer = { ...this.data };  
   }
 }
 
@@ -59,7 +59,7 @@ updateCustomer() {
       this.updated.emit('Customer updated successfully');
 
         setTimeout(() => {
-          this.close.emit(); // 🔥 close AFTER toast
+          this.close.emit(); 
         }, 300);
       }
     },

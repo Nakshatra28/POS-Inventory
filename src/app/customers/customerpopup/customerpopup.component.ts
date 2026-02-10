@@ -22,7 +22,7 @@ constructor(private api: ApiService) {}
   name: '',
   phone: '',
   email: '',
-  status: 'active', // default
+  status: 'active', 
   address: ''
 };
 
@@ -36,7 +36,7 @@ saveCustomer() {
 
   this.api.addCustomer(this.customer).subscribe({
     next: () => {
-      this.close.emit();   // 👈 tells parent to refresh table
+      this.close.emit();  
     },
     error: (err) => {
      this.toast.emit('Failed to add customer');

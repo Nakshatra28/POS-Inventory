@@ -14,11 +14,11 @@ export class PaymentpopupComponent {
   @Output() paymentAdded = new EventEmitter<void>();
   @Output() paymentError = new EventEmitter<string>();
 
-  // 🔥 if opened from invoice later
+ 
   @Input() invoiceId: string | null = null;
 
   payment = {
-    invoiceId: null as string | null, // ✅ ADD THIS
+    invoiceId: null as string | null,
     paymentDate: new Date().toISOString().substring(0, 10),
     customerName: '',
     method: 'cash',

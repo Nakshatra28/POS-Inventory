@@ -15,16 +15,16 @@ export class AccountsComponent implements OnInit {
 
   constructor(private api: ApiService) {}
 
-  // 🔹 Table data
+ 
   accountsList: any[] = [];
   filteredAccounts: any[] = [];
 
-  // 🔹 UI states
+ 
   isLoadingAccounts = false;
   searchText = '';
 
 
-  // 🔹 Top cards
+ 
   accountSummary = {
     totalSales: 0,
     stockValue: 0,
@@ -39,7 +39,7 @@ export class AccountsComponent implements OnInit {
    
   }
 
-  // 🔹 Summary API
+ 
   loadAccountSummary() {
     this.api.getAccountSummary().subscribe({
       next: (res) => {
@@ -51,7 +51,6 @@ export class AccountsComponent implements OnInit {
     });
   }
 
-  // 🔹 Accounts table API
   loadAccountsList() {
     this.isLoadingAccounts = true;
 
@@ -68,7 +67,7 @@ export class AccountsComponent implements OnInit {
     });
   }
 
-  //  Search logic
+  
   searchAccounts() {
     const text = this.searchText.trim().toLowerCase();
 
