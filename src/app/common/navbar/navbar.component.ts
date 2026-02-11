@@ -13,6 +13,19 @@ export class NavbarComponent {
 
   constructor(private router: Router) {}  // ✅ Router injected here
 
+userName: string = '';
+userRole: string = '';
+avatarLetter: string = '';
+
+ngOnInit() {
+  this.userName = localStorage.getItem('userName') || '';
+  this.userRole = localStorage.getItem('userRole') || '';
+
+  if (this.userName) {
+    this.avatarLetter = this.userName.charAt(0).toUpperCase();
+  }
+}
+
   toggleSidebar() {
     this.toggle.emit();
   }

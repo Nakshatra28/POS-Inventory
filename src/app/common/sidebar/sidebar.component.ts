@@ -16,6 +16,15 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
   closeSidebar() {
     this.close.emit();
   }
+userRole: string | null = null;
+
+ngOnInit() {
+  const token = localStorage.getItem('token');
+  if (token) {
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    this.userRole = payload.role;
+  }
+}
 
 
   }

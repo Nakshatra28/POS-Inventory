@@ -10,18 +10,14 @@
       <p class="font-semibold text-lg">InventoryPro</p>
     </div>
 
-    <!-- CLOSE BUTTON (MOBILE ONLY) -->
-    <button
-      class="md:hidden text-xl"
-      (click)="closeSidebar()">
-      ✕
-    </button>
+    <button class="md:hidden text-xl" (click)="closeSidebar()">✕</button>
   </div>
 
   <!-- MENU -->
   <div class="flex-1 py-4 px-3 space-y-1 overflow-y-auto">
 
-    <div
+    <!-- ADMIN ONLY -->
+    <div *ngIf="userRole === 'ADMIN'"
       routerLink="/dashboard"
       routerLinkActive="!bg-[#b57cff] !text-white !shadow-sm"
       class="flex items-center gap-3 py-1.5 px-3 rounded-lg cursor-pointer
@@ -30,6 +26,7 @@
       Dashboard
     </div>
 
+    <!-- BOTH (ADMIN + USER) -->
     <div
       routerLink="/customer"
       routerLinkActive="!bg-[#b57cff] !text-white !shadow-sm"
@@ -39,7 +36,8 @@
       Customers
     </div>
 
-    <div
+    <!-- ADMIN ONLY -->
+    <div *ngIf="userRole === 'ADMIN'"
       routerLink="/supplier"
       routerLinkActive="!bg-[#b57cff] !text-white !shadow-sm"
       class="flex items-center gap-3 py-1.5 px-3 rounded-lg cursor-pointer
@@ -48,7 +46,8 @@
       Suppliers
     </div>
 
-    <div
+    <!-- ADMIN ONLY -->
+    <div *ngIf="userRole === 'ADMIN'"
       routerLink="/product"
       routerLinkActive="!bg-[#b57cff] !text-white !shadow-sm"
       class="flex items-center gap-3 py-1.5 px-3 rounded-lg cursor-pointer
@@ -57,7 +56,8 @@
       Products
     </div>
 
-    <div
+    <!-- ADMIN ONLY -->
+    <div *ngIf="userRole === 'ADMIN'"
       routerLink="/stock"
       routerLinkActive="!bg-[#b57cff] !text-white !shadow-sm"
       class="flex items-center gap-3 py-1.5 px-3 rounded-lg cursor-pointer
@@ -66,6 +66,7 @@
       Stock Movements
     </div>
 
+    <!-- BOTH -->
     <div
       routerLink="/invoice"
       routerLinkActive="!bg-[#b57cff] !text-white !shadow-sm"
@@ -75,6 +76,7 @@
       Invoices
     </div>
 
+    <!-- BOTH -->
     <div
       routerLink="/purches"
       routerLinkActive="!bg-[#b57cff] !text-white !shadow-sm"
@@ -84,6 +86,7 @@
       Purchase Orders
     </div>
 
+    <!-- BOTH -->
     <div
       routerLink="/payment"
       routerLinkActive="!bg-[#b57cff] !text-white !shadow-sm"
@@ -93,7 +96,8 @@
       Payments
     </div>
 
-    <div
+    <!-- ADMIN ONLY -->
+    <div *ngIf="userRole === 'ADMIN'"
       routerLink="/account"
       routerLinkActive="!bg-[#b57cff] !text-white !shadow-sm"
       class="flex items-center gap-3 py-1.5 px-3 rounded-lg cursor-pointer
@@ -102,7 +106,8 @@
       Accounts
     </div>
 
-    <div
+    <!-- ADMIN ONLY -->
+    <div *ngIf="userRole === 'ADMIN'"
       routerLink="/audit-log"
       routerLinkActive="!bg-[#b57cff] !text-white !shadow-sm"
       class="flex items-center gap-3 py-2 px-3 rounded-lg cursor-pointer

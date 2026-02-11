@@ -30,13 +30,21 @@ export class LoginComponent {
       email: this.email,
       password: this.password
     }).subscribe({
-      next: (res: any) => {
-        // save token
-        localStorage.setItem('token', res.token);
+next: (res: any) => {
+  localStorage.setItem('token', res.token);
+  localStorage.setItem('userName', res.user.name);
+  localStorage.setItem('userRole', res.user.role);
 
-        // go to products or dashboard
-      this.router.navigate(['/dashboard']);
-      },
+  if (res.user.role === 'ADMIN') {
+    this.router.navigate(['/dashboard']);
+  } else {
+    this.router.navigate(['/invoice']);
+  }
+
+  this.loading = false;
+},
+
+
       error: (err) => {
         this.error = err.error?.message || 'Login failed';
         this.loading = false;

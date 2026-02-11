@@ -18,16 +18,15 @@ export class AppComponent {
 
   constructor(private router: Router) {
 
-    // ✅ INITIAL CHECK (THIS WAS MISSING)
-    this.isLoggedIn = !!localStorage.getItem('token');
+  this.router.events.subscribe(event => {
+    if (event instanceof NavigationEnd) {
+      const token = localStorage.getItem('token');
+      const isLoginRoute = this.router.url === '/login';
 
-    // ✅ UPDATE ON EVERY ROUTE CHANGE
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        this.isLoggedIn = !!localStorage.getItem('token');
-      }
-    });
-  }
+      this.isLoggedIn = !!token && !isLoginRoute;
+    }
+  });
+}
 
   toggleSidebar() {
     this.sidebarOpen = !this.sidebarOpen;
